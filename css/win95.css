@@ -1,0 +1,697 @@
+:root {
+  --xp-desktop:     #236bcc;
+  --xp-window-bg:   #ece9d8;
+  --xp-white:       #ffffff;
+  --xp-border:      #0a246a;
+  --xp-navy:        #0a246a;
+  --xp-highlight:   #316ac5;
+  --xp-font:        Tahoma, 'MS Sans Serif', Arial, sans-serif;
+}
+
+/* ── Global reset ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--xp-desktop);
+  font-family: var(--xp-font);
+  font-size: 11px;
+  overflow: hidden;
+  color: #000;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 30px 0;
+  background: url('../references/mustang.webp') center / cover no-repeat;
+  z-index: 0;
+}
+
+/* ── Utility ────────────────────────────────────────────── */
+.raised {
+  border: 1px solid #7f9db9;
+  background: var(--xp-window-bg);
+  border-radius: 3px;
+}
+
+.sunken {
+  border: 1px solid #7f9db9;
+  background: var(--xp-white);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* ── Window ─────────────────────────────────────────────── */
+.win95-window {
+  background: var(--xp-window-bg);
+  border: 1px solid var(--xp-border);
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 3px 3px 14px rgba(0,0,0,0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.win95-window.minimized .window-body,
+.win95-window.minimized .menu-bar,
+.win95-window.minimized .status-bar {
+  display: none;
+}
+
+.win95-window.maximized {
+  position: fixed;
+  inset: 0 0 30px 0;
+  z-index: 100;
+  width: auto !important;
+  max-height: none !important;
+  border-radius: 0;
+}
+
+/* Title bar */
+.title-bar {
+  background: linear-gradient(to bottom,
+    #5ea3f8 0%,
+    #3882e0 30%,
+    #2a71d5 50%,
+    #1e5fcc 51%,
+    #2e72d8 100%
+  );
+  border-top: 1px solid #7cb5fc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 4px 8px;
+  user-select: none;
+  flex-shrink: 0;
+  min-height: 28px;
+  border-radius: 7px 7px 0 0;
+}
+
+.title-bar-text {
+  font-weight: bold;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+/* Title bar buttons — blue by default */
+.title-bar-btn {
+  width: 22px;
+  height: 21px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.35);
+  background: linear-gradient(to bottom, #6e90e8, #3060c8 40%, #1f50b0 60%, #3060c8);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: var(--xp-font);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Close button — red */
+.title-bar-btn.js-window-close,
+.title-bar-btn.spa-btn-close,
+#dialog-close-btn {
+  background: linear-gradient(to bottom, #f09080, #c84030 40%, #a82818 60%, #c84030);
+  border-color: rgba(0,0,0,0.45);
+}
+
+/* Maximize button — CSS-drawn square icon (no Unicode) */
+.spa-btn-maximize {
+  font-size: 0;
+  position: relative;
+}
+
+/* Normal: single square with thick top border (XP maximize icon) */
+.spa-btn-maximize::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  width: 9px;
+  height: 8px;
+  border: 1.5px solid rgba(255,255,255,0.95);
+  border-top-width: 3px;
+}
+
+/* Restore: two overlapping squares */
+.spa-btn-maximize.is-maximized::before {
+  width: 7px;
+  height: 6px;
+  transform: translate(-20%, -65%);
+}
+
+.spa-btn-maximize.is-maximized::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 6px;
+  border: 1.5px solid rgba(255,255,255,0.95);
+  border-top-width: 3px;
+  bottom: 4px;
+  left: 3px;
+}
+
+.title-bar-btn:active {
+  opacity: 0.8;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* Menu bar */
+.menu-bar {
+  display: flex;
+  background: var(--xp-window-bg);
+  padding: 2px 4px;
+  border-bottom: 1px solid #b5b0a0;
+  flex-shrink: 0;
+}
+
+.menu-bar-item {
+  padding: 2px 8px;
+  cursor: default;
+  border-radius: 2px;
+}
+
+.menu-bar-item:hover {
+  background: var(--xp-highlight);
+  color: #fff;
+}
+
+/* Window body */
+.window-body {
+  padding: 8px;
+  overflow-y: auto;
+  flex: 1;
+  background: var(--xp-window-bg);
+}
+
+/* Status bar */
+.status-bar {
+  display: flex;
+  border-top: 1px solid #b5b0a0;
+  padding: 2px 4px;
+  background: var(--xp-window-bg);
+  flex-shrink: 0;
+}
+
+.status-bar-field {
+  border: 1px solid #7f9db9;
+  padding: 1px 6px;
+  flex: 1;
+  font-size: 11px;
+  background: var(--xp-window-bg);
+  border-radius: 2px;
+}
+
+/* ── Button ─────────────────────────────────────────────── */
+.btn {
+  background: linear-gradient(to bottom, #f0f0e8 0%, #deded8 45%, #cecec8 50%, #deded8 100%);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  padding: 4px 14px;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.btn:hover {
+  background: linear-gradient(to bottom, #e0ecff 0%, #c8dcf8 45%, #b8cce8 50%, #c8dcf8 100%);
+  border-color: var(--xp-highlight);
+}
+
+.btn:active {
+  background: linear-gradient(to bottom, #b8cce8 0%, #c8dcf8 50%, #d8ecff 100%);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn:focus {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+/* ── Taskbar ────────────────────────────────────────────── */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, #3c84e5 0%, #2462c8 4%, #1a56c4 94%, #1248b0 100%);
+  border-top: 1px solid #5ea3f8;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  z-index: 1000;
+}
+
+/* XP green pill Start button */
+.taskbar-start-btn {
+  height: 26px;
+  padding: 0 14px 0 10px;
+  background: linear-gradient(to bottom, #74c236 0%, #4aaa1a 40%, #3a9010 50%, #4aaa1a 100%);
+  border: 1px solid #1e6a0a;
+  border-radius: 0 13px 13px 0;
+  font-family: var(--xp-font);
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow: 1px 0 6px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: -4px;
+}
+
+.taskbar-start-btn:active {
+  background: linear-gradient(to bottom, #3a9010 0%, #4aaa1a 50%, #74c236 100%);
+}
+
+.taskbar-separator {
+  width: 1px;
+  height: 22px;
+  background: rgba(255,255,255,0.25);
+  margin: 0 2px;
+}
+
+.taskbar-window-btn {
+  background: linear-gradient(to bottom, #3878d4 0%, #2060c0 50%, #1850a8 100%);
+  border: 1px solid #4a94ea;
+  border-radius: 3px;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  color: #fff;
+  padding: 2px 8px;
+  cursor: pointer;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 100px;
+  max-width: 160px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.taskbar-window-btn.active {
+  background: linear-gradient(to bottom, #1850a8 0%, #2060c0 50%, #3878d4 100%);
+  border-color: #2255a8;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.taskbar-tray {
+  margin-left: auto;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3px;
+  padding: 2px 10px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.taskbar-tray-sep {
+  width: 1px;
+  height: 12px;
+  background: rgba(255,255,255,0.35);
+}
+
+/* ── Desktop icons ──────────────────────────────────────── */
+.desktop-icons {
+  position: fixed;
+  inset: 0 0 30px 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.desktop-icon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: grab;
+  text-decoration: none;
+  color: #fff;
+  width: 72px;
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+  user-select: none;
+  pointer-events: all;
+}
+
+.desktop-icon.dragging {
+  cursor: grabbing;
+  opacity: 0.85;
+  z-index: 500;
+}
+
+.desktop-icon:focus {
+  outline: 1px dotted rgba(255,255,255,0.8);
+  background: rgba(49,106,197,0.4);
+}
+
+.desktop-icon:hover .icon-label,
+.desktop-icon:focus .icon-label {
+  background: var(--xp-highlight);
+  border-radius: 2px;
+}
+
+.icon-glyph {
+  font-size: 32px;
+  line-height: 1;
+  display: block;
+  filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5));
+}
+
+.icon-label {
+  font-size: 11px;
+  font-family: var(--xp-font);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  word-break: break-word;
+  line-height: 1.3;
+  padding: 1px 4px;
+  color: #fff;
+}
+
+/* ── Dialog ─────────────────────────────────────────────── */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.dialog-overlay.hidden {
+  display: none;
+}
+
+.win95-dialog {
+  background: var(--xp-window-bg);
+  border: 1px solid var(--xp-border);
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 4px 4px 18px rgba(0,0,0,0.6);
+  min-width: 320px;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+.dialog-body {
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.dialog-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.dialog-text {
+  flex: 1;
+}
+
+.dialog-text p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 8px 16px 12px;
+  gap: 8px;
+  border-top: 1px solid #b5b0a0;
+  background: #d8d4c8;
+}
+
+/* ── Content panels ─────────────────────────────────────── */
+.panel-raised {
+  background: var(--xp-window-bg);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  padding: 8px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.panel-sunken {
+  background: var(--xp-white);
+  border: 1px solid #7f9db9;
+  border-radius: 2px;
+  padding: 8px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ── Desktop page centering ─────────────────────────────── */
+.desktop-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px 44px;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+h1 {
+  font-family: var(--xp-font);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--xp-navy);
+}
+
+h2 {
+  font-family: var(--xp-font);
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #b5b0a0;
+  padding-bottom: 2px;
+  color: var(--xp-navy);
+}
+
+h3 {
+  font-family: var(--xp-font);
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+p { line-height: 1.6; margin-bottom: 8px; }
+
+ul { padding-left: 18px; }
+ul li { margin-bottom: 3px; line-height: 1.5; }
+
+a { color: var(--xp-highlight); }
+
+/* ── XP scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 16px; height: 16px; }
+
+::-webkit-scrollbar-track { background: #d4d0c8; }
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #c0bcb4, #e0dcd4 40%, #d0ccc4);
+  border: 1px solid #7f9db9;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-button {
+  background: linear-gradient(to bottom, #e8e4dc, #c8c4bc);
+  border: 1px solid #7f9db9;
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-corner { background: #d4d0c8; }
+
+/* ── Layout helpers ─────────────────────────────────────── */
+.two-col { display: flex; gap: 8px; }
+.two-col-main { flex: 1; min-width: 0; }
+.two-col-side  { width: 200px; flex-shrink: 0; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.project-card { display: flex; flex-direction: column; gap: 6px; }
+
+.tech-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.tech-tag {
+  border: 1px solid #7f9db9;
+  background: #e8e4dc;
+  padding: 1px 5px;
+  font-size: 10px;
+  border-radius: 2px;
+}
+
+.job-entry { margin-bottom: 8px; }
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.job-date { font-size: 10px; color: #666; white-space: nowrap; }
+
+.contact-links { display: flex; flex-direction: column; gap: 6px; }
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  text-decoration: none;
+  color: #000;
+  font-size: 11px;
+  border-radius: 2px;
+}
+
+.contact-link:hover {
+  background: var(--xp-highlight);
+  color: #fff;
+}
+
+.section-gap { margin-top: 12px; }
+
+/* ── About window layout ────────────────────────────────── */
+.about-bio {
+  margin-bottom: 8px;
+}
+
+.about-three-col {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.about-three-col > * {
+  flex: 1;
+}
+
+.about-photo-viewer {
+  display: flex;
+  gap: 8px;
+  height: 300px;
+}
+
+.about-photo-main {
+  flex: 1;
+  min-width: 0;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.about-photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.about-thumb {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+  border: 2px solid transparent;
+}
+
+.about-thumb:hover {
+  border-color: var(--xp-highlight);
+}
+
+.about-thumb.active {
+  border-color: var(--xp-navy);
+}
+
+/* ── SPA window system ──────────────────────────────────── */
+#desktop-windows {
+  position: fixed;
+  inset: 0 0 30px 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.spa-window {
+  position: absolute;
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  overflow: hidden;
+  min-width: 320px;
+  min-height: 100px;
+  max-height: calc(100vh - 60px);
+}
+
+/* Window body sizes to content, scrolls only when window is resized smaller */
+.spa-window .window-body {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 0 1 auto;
+}
+
+.spa-window.maximized {
+  position: absolute !important;
+  inset: 0 !important;
+  width: auto  !important;
+  height: auto !important;
+  resize: none !important;
+  border-radius: 0 !important;
+}
+
+/* Taskbar windows area */
+#taskbar-windows {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  overflow: hidden;
+}

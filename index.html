@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebastian Moron — Portfolio</title>
+  <link rel="stylesheet" href="css/win95.css">
+</head>
+<body>
+
+  <!-- Desktop Icons -->
+  <div class="desktop-icons">
+    <div class="desktop-icon" data-window="about">
+      <span class="icon-glyph">👤</span>
+      <span class="icon-label">About Me</span>
+    </div>
+    <div class="desktop-icon" data-window="projects">
+      <span class="icon-glyph">💼</span>
+      <span class="icon-label">Projects</span>
+    </div>
+    <div class="desktop-icon" data-window="experience">
+      <span class="icon-glyph">📋</span>
+      <span class="icon-label">Experience</span>
+    </div>
+    <div class="desktop-icon" data-window="contact">
+      <span class="icon-glyph">📧</span>
+      <span class="icon-label">Contact</span>
+    </div>
+  </div>
+
+  <!-- Window container -->
+  <div id="desktop-windows"></div>
+
+  <!-- ── Window content templates ────────────────────────── -->
+
+  <template id="tpl-about">
+    <!-- Row 1: Bio -->
+    <div class="panel-sunken about-bio">
+      <h2>Bio</h2>
+      <p>Hello, I'm <strong>Sebastián</strong>, a Product Designer originally from Peru, now based in Valencia, Spain.</p>
+      <p>I've managed digital projects for top companies in Peru, led sales and marketing teams for a football club, and founded my own startup. These experiences have helped me understand business needs from multiple angles.</p>
+      <p>On the other hand, my curiosity on research, design and product management have taught me how to understand user needs and come up with creative, simple, and functional solutions.</p>
+      <p>Lately, I've been learning how to vibe code and experimenting with AI tools to learn how to ship my design work directly.</p>
+    </div>
+
+    <!-- Row 2: Three columns -->
+    <div class="about-three-col">
+      <div class="panel-raised">
+        <h2>Interests</h2>
+        <ul>
+          <li>Music</li>
+          <li>Movies</li>
+          <li>Sports &amp; Outdoors</li>
+        </ul>
+      </div>
+      <div class="panel-raised">
+        <h2>Skills</h2>
+        <ul>
+          <li>UX/UI Design</li>
+          <li>Product Thinking</li>
+          <li>UX Research</li>
+          <li>Frontend Dev</li>
+          <li>AI &amp; Emerging Tech</li>
+        </ul>
+      </div>
+      <div class="panel-raised">
+        <h2>Tool Stack</h2>
+        <ul>
+          <li>Figma</li>
+          <li>Claude</li>
+          <li>Cursor</li>
+          <li>ChatGPT</li>
+          <li>Notion</li>
+          <li>Maze</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 3: Photo viewer -->
+    <div class="about-photo-viewer">
+      <div class="about-photo-main panel-sunken">
+        <img class="about-featured-img" src="https://picsum.photos/seed/seb1/520/300" alt="Featured photo">
+      </div>
+      <div class="about-photo-thumbs">
+        <img class="about-thumb active" src="https://picsum.photos/seed/seb1/100/60" data-full="https://picsum.photos/seed/seb1/520/300" alt="">
+        <img class="about-thumb" src="https://picsum.photos/seed/seb2/100/60" data-full="https://picsum.photos/seed/seb2/520/300" alt="">
+        <img class="about-thumb" src="https://picsum.photos/seed/seb3/100/60" data-full="https://picsum.photos/seed/seb3/520/300" alt="">
+        <img class="about-thumb" src="https://picsum.photos/seed/seb4/100/60" data-full="https://picsum.photos/seed/seb4/520/300" alt="">
+        <img class="about-thumb" src="https://picsum.photos/seed/seb5/100/60" data-full="https://picsum.photos/seed/seb5/520/300" alt="">
+        <img class="about-thumb" src="https://picsum.photos/seed/seb6/100/60" data-full="https://picsum.photos/seed/seb6/520/300" alt="">
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-projects">
+    <h1>Projects</h1>
+    <div class="project-grid">
+      <div class="panel-raised project-card">
+        <h3>🛒 E-Commerce Platform</h3>
+        <p>A full-stack online store with product catalog, cart, checkout, and order management. Includes an admin dashboard for inventory control.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Stripe</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+      <div class="panel-raised project-card">
+        <h3>📊 Analytics Dashboard</h3>
+        <p>Real-time data visualization tool for business metrics. Features interactive charts, custom date ranges, and CSV export.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Vue.js</span>
+          <span class="tech-tag">D3.js</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">FastAPI</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+      <div class="panel-raised project-card">
+        <h3>🤖 AI Chat Assistant</h3>
+        <p>A conversational AI interface powered by large language models. Supports multi-turn conversations, document upload, and context retention.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">OpenAI API</span>
+          <span class="tech-tag">Redis</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+      <div class="panel-raised project-card">
+        <h3>🗺️ Task Manager</h3>
+        <p>A Kanban-style project management app with drag-and-drop boards, team collaboration, due dates, and notification support.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">Socket.io</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+      <div class="panel-raised project-card">
+        <h3>🔐 Auth Microservice</h3>
+        <p>Production-ready authentication service with JWT, OAuth 2.0 providers, rate limiting, and audit logging.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Go</span>
+          <span class="tech-tag">gRPC</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Docker</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+      <div class="panel-raised project-card">
+        <h3>🌐 Portfolio Website</h3>
+        <p>This very site! A Windows XP themed portfolio built with plain HTML, CSS, and JavaScript — no frameworks.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML</span>
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+        <div><a href="#" class="btn">View Project</a></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-experience">
+    <h1>Experience</h1>
+    <h2>Work History</h2>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://www.digistore24.com/" target="_blank" rel="noopener"><strong>Digistore24</strong></a>
+          <span class="job-date">Aug 2025 — Present</span>
+        </div>
+        <h3>Senior Product Designer</h3>
+        <ul>
+          <li>Own the end-to-end design process, from ideation to final execution</li>
+          <li>Develop wireframes, user flows, prototypes, and high-fidelity designs for web and mobile</li>
+          <li>Conduct user research, including interviews, usability testing, and competitor analysis</li>
+          <li>Maintain and expand the company's design system to ensure consistency across all platforms</li>
+          <li>Offer mentorship to junior designers, providing feedback and fostering growth</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://torre.ai/" target="_blank" rel="noopener"><strong>Torre</strong></a>
+          <span class="job-date">Aug 2022 — Apr 2025</span>
+        </div>
+        <h3>Product Designer</h3>
+        <ul>
+          <li>Led the end-to-end design process of two new products, TorreOS and TorreReach, aligning business goals with user needs</li>
+          <li>Created and maintained components within the design system, ensuring UI consistency across the platform</li>
+          <li>Executed usability and QA testing, via prototypes and feature-flag environments, to ensure a smooth user experience</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://torre.ai/" target="_blank" rel="noopener"><strong>Torre</strong></a>
+          <span class="job-date">Aug 2021 — Aug 2022</span>
+        </div>
+        <h3>UX Researcher</h3>
+        <ul>
+          <li>Conducted usability testing for 50+ features, delivering actionable insights that informed key design decisions</li>
+          <li>Led a value testing initiative, resulting in 31 actionable insights, 10 user testimonials, and 12 user personas created</li>
+          <li>Ran daily exploratory tests and user behavior analysis to provide actionable insights and report bugs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://www.facebook.com/platsport" target="_blank" rel="noopener"><strong>Platsport</strong></a>
+          <span class="job-date">Oct 2020 — Dec 2021</span>
+        </div>
+        <h3>Co-Founder</h3>
+        <ul>
+          <li>Grew the platform to serve over 600 students and reach self-sustainability</li>
+          <li>Led 60+ user interviews and market research to implement in the product vision and strategy</li>
+          <li>Recruited and onboarded 20+ instructors from top-tier organizations to offer courses and increase the user base</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://clubsportingcristal.pe/" target="_blank" rel="noopener"><strong>Club Sporting Cristal</strong></a>
+          <span class="job-date">Aug 2018 — Jun 2020</span>
+        </div>
+        <h3>Brand Manager</h3>
+        <ul>
+          <li>Managed long-term sponsorships with major brands like AB Inbev, Adidas, MG Motors, Konami, and Gatorade</li>
+          <li>Secured over $1M in new sponsorship and commercial agreements, driving revenue growth</li>
+          <li>Supervised marketing and commercial operations for CONMEBOL and local tournament match days</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job-entry">
+      <div class="panel-sunken">
+        <div class="job-header">
+          <a href="https://seekglobal.co/" target="_blank" rel="noopener"><strong>Seek</strong></a>
+          <span class="job-date">Jul 2017 — Jul 2018</span>
+        </div>
+        <h3>Project Manager</h3>
+        <ul>
+          <li>Collaborated with a team of designers and engineers to develop digital and branding projects for major companies like Volcan (mining), Intralot (gambling), Sporting Cristal (sports), Belcorp (mass consumption), and IPP (education)</li>
+        </ul>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-contact">
+    <h1>Contact</h1>
+    <p>I'm always open to new opportunities, projects or collaborations. You can find me here:</p>
+    <div class="panel-sunken" style="margin-top: 8px; margin-bottom: 12px;">
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:smoronoliva@gmail.com">
+          <span>📧</span><span>smoronoliva@gmail.com</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/smoronoliva/" target="_blank" rel="noopener">
+          <span>💼</span><span>linkedin.com/in/smoronoliva</span>
+        </a>
+        <a class="contact-link" href="https://x.com/sebasm93" target="_blank" rel="noopener">
+          <span>🐦</span><span>x.com/sebasm93</span>
+        </a>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <a href="mailto:smoronoliva@gmail.com" class="btn">Say Hello</a>
+    </div>
+  </template>
+
+  <!-- Welcome Dialog -->
+  <div class="dialog-overlay hidden" id="welcome-dialog">
+    <div class="win95-dialog">
+      <div class="title-bar">
+        <span class="title-bar-text">Welcome</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn" id="dialog-close-btn">✕</button>
+        </div>
+      </div>
+      <div class="dialog-body">
+        <span class="dialog-icon">👋</span>
+        <div class="dialog-text">
+          <p><strong>Welcome to my Portfolio!</strong></p>
+          <p>Hey there, I'm Sebastián, a designer from Peru currently living in Spain.</p>
+          <p>Double-click on any desktop icon to discover more about me.</p>
+        </div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="btn" id="dialog-ok-btn">Enter portfolio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button class="taskbar-start-btn">🪟 Start</button>
+    <div class="taskbar-separator"></div>
+    <div id="taskbar-windows"></div>
+    <div class="taskbar-tray">
+      <span>📍 Valencia, Spain</span>
+      <span class="taskbar-tray-sep"></span>
+      <span id="taskbar-clock">00:00</span>
+    </div>
+  </div>
+
+  <script src="js/win95.js"></script>
+</body>
+</html>
