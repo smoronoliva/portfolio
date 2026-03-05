@@ -64,7 +64,14 @@
         title: '📧 Contact — Portfolio',
         icon: '📧', label: 'Contact',
         width: 480
-      }
+      },
+      'photo-caribe':       { title: 'Caribe',       icon: '🖼', label: 'Caribe',       width: 700, height: 520, photo: true, src: 'references/about-me/Caribe.JPG' },
+      'photo-colombia':     { title: 'Colombia',     icon: '🖼', label: 'Colombia',     width: 700, height: 520, photo: true, src: 'references/about-me/Colombia.jpeg' },
+      'photo-el-templo':    { title: 'El Templo',    icon: '🖼', label: 'El Templo',    width: 700, height: 520, photo: true, src: 'references/about-me/El templo.jpeg' },
+      'photo-libertadores': { title: 'Libertadores', icon: '🖼', label: 'Libertadores', width: 700, height: 520, photo: true, src: 'references/about-me/Libertadores.JPG' },
+      'photo-machu-pichu':  { title: 'Machu Picchu', icon: '🖼', label: 'Machu Picchu', width: 700, height: 520, photo: true, src: 'references/about-me/Machu pichu.jpeg' },
+
+      'photo-travelling':   { title: 'Travelling',   icon: '🖼', label: 'Travelling',   width: 700, height: 520, photo: true, src: 'references/about-me/Travelling.jpeg' }
     };
 
     /* Focus a window (bring to front) */
@@ -110,19 +117,25 @@
       posX = Math.min(posX, Math.max(0, window.innerWidth  - cfg.width  - 20));
       posY = Math.max(0, posY);
 
-      // Pull content from <template>
-      var tpl = document.getElementById('tpl-' + id);
-      var bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
+      // Pull content from <template> or build inline for photos
+      var bodyHTML;
+      if (cfg.photo) {
+        bodyHTML = '<div class="photo-viewer-full"><img src="' + cfg.src + '" alt="' + cfg.label + '"></div>';
+      } else {
+        var tpl = document.getElementById('tpl-' + id);
+        bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
+      }
 
       // Build window DOM
       var win = document.createElement('div');
-      win.className = 'win95-window spa-window';
+      win.className = cfg.photo ? 'win95-window spa-window photo-window' : 'win95-window spa-window';
       win.id        = 'win-' + id;
       win.style.left  = posX + 'px';
       win.style.top   = posY + 'px';
       win.style.width = cfg.width + 'px';
+      if (cfg.height) win.style.height = cfg.height + 'px';
 
-      win.innerHTML =
+      var titleBarHTML =
         '<div class="title-bar spa-title-bar">' +
           '<span class="title-bar-text">' + cfg.title + '</span>' +
           '<div class="title-bar-controls">' +
@@ -130,14 +143,20 @@
             '<button class="title-bar-btn spa-btn-maximize" title="Maximize"></button>' +
             '<button class="title-bar-btn spa-btn-close"    title="Close">✕</button>' +
           '</div>' +
-        '</div>' +
-        '<div class="menu-bar">' +
-          '<span class="menu-bar-item">File</span>' +
-          '<span class="menu-bar-item">View</span>' +
-          '<span class="menu-bar-item">Help</span>' +
-        '</div>' +
-        '<div class="window-body">' + bodyHTML + '</div>' +
-        '<div class="status-bar"><span class="status-bar-field">Last updated 27/02/2026</span></div>';
+        '</div>';
+
+      if (cfg.photo) {
+        win.innerHTML = titleBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
+      } else {
+        win.innerHTML = titleBarHTML +
+          '<div class="menu-bar">' +
+            '<span class="menu-bar-item">File</span>' +
+            '<span class="menu-bar-item">View</span>' +
+            '<span class="menu-bar-item">Help</span>' +
+          '</div>' +
+          '<div class="window-body">' + bodyHTML + '</div>' +
+          '<div class="status-bar"><span class="status-bar-field">Last updated 27/02/2026</span></div>';
+      }
 
       container.appendChild(win);
       windows[id] = { el: win, minimized: false, maximized: false, prevState: null };
@@ -300,10 +319,26 @@
     var TASKBAR_H   = 30;
 
     var iconDefaults = [
-      { left: 16, top: 16  },
-      { left: 16, top: 104 },
-      { left: 16, top: 192 },
-      { left: 16, top: 280 }
+      { left: 16,  top: 16  },
+      { left: 16,  top: 104 },
+      { left: 16,  top: 192 },
+      { left: 16,  top: 280 },
+      { left: 104, top: 16  },
+      { left: 104, top: 104 },
+      { left: 104, top: 192 },
+      { left: 104, top: 280 },
+      { left: 104, top: 368 },
+      { left: 104, top: 456 },
+      { left: 104, top: 544 },
+      { left: 192, top: 16  },
+      { left: 192, top: 104 },
+      { left: 192, top: 192 },
+      { left: 192, top: 280 },
+      { left: 192, top: 368 },
+      { left: 192, top: 456 },
+      { left: 192, top: 544 },
+      { left: 280, top: 16  },
+      { left: 280, top: 104 }
     ];
 
     var savedIcons = {};
