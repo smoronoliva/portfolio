@@ -65,13 +65,14 @@
         icon: '📧', label: 'Contact',
         width: 480
       },
-      'photo-caribe':       { title: 'Caribe',       icon: '🖼', label: 'Caribe',       width: 700, height: 520, photo: true, src: 'references/about-me/Caribe.JPG' },
-      'photo-colombia':     { title: 'Colombia',     icon: '🖼', label: 'Colombia',     width: 700, height: 520, photo: true, src: 'references/about-me/Colombia.jpeg' },
-      'photo-el-templo':    { title: 'El Templo',    icon: '🖼', label: 'El Templo',    width: 700, height: 520, photo: true, src: 'references/about-me/El templo.jpeg' },
-      'photo-libertadores': { title: 'Libertadores', icon: '🖼', label: 'Libertadores', width: 700, height: 520, photo: true, src: 'references/about-me/Libertadores.JPG' },
-      'photo-machu-pichu':  { title: 'Machu Picchu', icon: '🖼', label: 'Machu Picchu', width: 700, height: 520, photo: true, src: 'references/about-me/Machu pichu.jpeg' },
-
-      'photo-travelling':   { title: 'Travelling',   icon: '🖼', label: 'Travelling',   width: 700, height: 520, photo: true, src: 'references/about-me/Travelling.jpeg' }
+      'photo-bocas-del-toro': { title: 'Bocas del Toro', icon: '🖼', label: 'Bocas del Toro', width: 700, height: 520, photo: true, src: 'references/about-me/Bocas del Toro.JPG' },
+      'photo-morocco':        { title: 'Morocco',        icon: '🖼', label: 'Morocco',        width: 700, height: 520, photo: true, src: 'references/about-me/Morocco.JPG' },
+      'photo-cusco':          { title: 'Cusco',          icon: '🖼', label: 'Cusco',          width: 700, height: 520, photo: true, src: 'references/about-me/Cusco.jpeg' },
+      'photo-santa-marta':    { title: 'Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Santa Marta.jpeg' },
+      'photo-costa-rica':     { title: 'Costa Rica',     icon: '🖼', label: 'Costa Rica',     width: 700, height: 520, photo: true, src: 'references/about-me/Costa Rica.jpeg' },
+      'photo-jungle-trek':    { title: 'Jungle Trek',    icon: '🖼', label: 'Jungle Trek',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg' },
+      'photo-jiu-jitsu':      { title: 'Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg' },
+      'photo-sporting-cristal': { title: 'Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg' }
     };
 
     /* Focus a window (bring to front) */
@@ -155,7 +156,7 @@
             '<span class="menu-bar-item">Help</span>' +
           '</div>' +
           '<div class="window-body">' + bodyHTML + '</div>' +
-          '<div class="status-bar"><span class="status-bar-field">Last updated 27/02/2026</span></div>';
+          '<div class="status-bar"><span class="status-bar-field">Last updated 08/03/2026</span></div>';
       }
 
       container.appendChild(win);
@@ -318,28 +319,31 @@
     var ICON_KEY    = 'desktop-icon-positions';
     var TASKBAR_H   = 30;
 
-    var iconDefaults = [
-      { left: 16,  top: 16  },
-      { left: 16,  top: 104 },
-      { left: 16,  top: 192 },
-      { left: 16,  top: 280 },
-      { left: 104, top: 16  },
-      { left: 104, top: 104 },
-      { left: 104, top: 192 },
-      { left: 104, top: 280 },
-      { left: 104, top: 368 },
-      { left: 104, top: 456 },
-      { left: 104, top: 544 },
-      { left: 192, top: 16  },
-      { left: 192, top: 104 },
-      { left: 192, top: 192 },
-      { left: 192, top: 280 },
-      { left: 192, top: 368 },
-      { left: 192, top: 456 },
-      { left: 192, top: 544 },
-      { left: 280, top: 16  },
-      { left: 280, top: 104 }
-    ];
+    var iconDefaults = {
+      // Column 1 — decorative XP icons (x=16)
+      'decor-recycle':    { left: 16,  top: 16  },
+      'decor-notepad':    { left: 16,  top: 104 },
+      'decor-calculator': { left: 16,  top: 192 },
+      'decor-paint':      { left: 16,  top: 280 },
+      'decor-wmp':        { left: 16,  top: 368 },
+      'decor-msn':        { left: 16,  top: 456 },
+      'decor-nfs':        { left: 16,  top: 544 },
+      'decor-aoe':        { left: 16,  top: 632 },
+      // Column 2 — personal photo icons (x=104)
+      'photo-bocas-del-toro':  { left: 104, top: 16  },
+      'photo-morocco':         { left: 104, top: 104 },
+      'photo-cusco':           { left: 104, top: 192 },
+      'photo-sporting-cristal':{ left: 104, top: 280 },
+      'photo-jiu-jitsu':       { left: 104, top: 368 },
+      'photo-santa-marta':     { left: 104, top: 456 },
+      'photo-costa-rica':      { left: 104, top: 544 },
+      'photo-jungle-trek':     { left: 104, top: 632 },
+      // Column 3 — portfolio icons (x=192)
+      'about':      { left: 192, top: 16  },
+      'projects':   { left: 192, top: 104 },
+      'experience': { left: 192, top: 192 },
+      'contact':    { left: 192, top: 280 }
+    };
 
     var savedIcons = {};
     try { savedIcons = JSON.parse(localStorage.getItem(ICON_KEY)) || {}; } catch (e) {}
@@ -347,10 +351,25 @@
     // Apply saved / default positions
     icons.forEach(function (icon, i) {
       var id  = icon.getAttribute('data-window');
-      var pos = savedIcons[id] || iconDefaults[i] || { left: 16, top: 16 + i * 88 };
+      var pos = savedIcons[id] || iconDefaults[id] || { left: 16, top: 16 + i * 88 };
       icon.style.left = pos.left + 'px';
       icon.style.top  = pos.top  + 'px';
     });
+
+    // Clamp all icons within the visible desktop area
+    function clampIcons() {
+      icons.forEach(function (icon) {
+        var id      = icon.getAttribute('data-window');
+        var newLeft = Math.max(0, Math.min(parseInt(icon.style.left, 10) || 0, window.innerWidth  - icon.offsetWidth));
+        var newTop  = Math.max(0, Math.min(parseInt(icon.style.top,  10) || 0, window.innerHeight - icon.offsetHeight - TASKBAR_H));
+        icon.style.left = newLeft + 'px';
+        icon.style.top  = newTop  + 'px';
+        if (savedIcons[id]) { savedIcons[id] = { left: newLeft, top: newTop }; }
+      });
+      try { localStorage.setItem(ICON_KEY, JSON.stringify(savedIcons)); } catch (e) {}
+    }
+    clampIcons();
+    window.addEventListener('resize', clampIcons);
 
     icons.forEach(function (icon) {
       var id = icon.getAttribute('data-window');
@@ -402,6 +421,57 @@
           if (id) openWindow(id);
         }
       });
+    });
+
+    /* ── Start Menu ──────────────────────────────────────── */
+    var startBtn  = document.querySelector('.taskbar-start-btn');
+    var startMenu = document.getElementById('start-menu');
+
+    startBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      startMenu.style.display = startMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', function () {
+      startMenu.style.display = 'none';
+    });
+
+    function resetIconPositions() {
+      var decorIds     = ['decor-recycle', 'decor-notepad', 'decor-calculator', 'decor-paint', 'decor-wmp', 'decor-msn', 'decor-nfs', 'decor-aoe'];
+      var photoIds     = ['photo-bocas-del-toro', 'photo-morocco', 'photo-cusco', 'photo-sporting-cristal', 'photo-jiu-jitsu', 'photo-santa-marta', 'photo-costa-rica', 'photo-jungle-trek'];
+      var portfolioIds = ['about', 'projects', 'experience', 'contact'];
+
+      var availH    = window.innerHeight - TASKBAR_H;
+      var marginTop = 16;
+      var colW      = 88;
+
+      function assignCol(ids, col) {
+        var step = Math.min(88, Math.floor((availH - marginTop) / ids.length));
+        ids.forEach(function (id, i) {
+          savedIcons[id] = { left: 16 + col * colW, top: marginTop + i * step };
+        });
+      }
+
+      savedIcons = {};
+      assignCol(decorIds,     0);
+      assignCol(photoIds,     1);
+      assignCol(portfolioIds, 2);
+
+      try { localStorage.setItem(ICON_KEY, JSON.stringify(savedIcons)); } catch (e) {}
+
+      icons.forEach(function (icon) {
+        var id  = icon.getAttribute('data-window');
+        var pos = savedIcons[id];
+        if (pos) {
+          icon.style.left = pos.left + 'px';
+          icon.style.top  = pos.top  + 'px';
+        }
+      });
+    }
+
+    document.getElementById('start-reset-icons').addEventListener('click', function () {
+      startMenu.style.display = 'none';
+      resetIconPositions();
     });
 
   });

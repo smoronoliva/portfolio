@@ -23,7 +23,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0 0 30px 0;
-  background: url('../references/mustang.webp') center / cover no-repeat;
+  background: url('../references/mj.webp') center / cover no-repeat;
   z-index: 0;
 }
 
@@ -268,6 +268,12 @@ body::before {
 }
 
 /* XP green pill Start button */
+.taskbar-start-btn img {
+  height: 12px;
+  width: 12px;
+}
+
+/* XP green pill Start button */
 .taskbar-start-btn {
   height: 26px;
   padding: 0 14px 0 10px;
@@ -290,6 +296,36 @@ body::before {
 
 .taskbar-start-btn:active {
   background: linear-gradient(to bottom, #3a9010 0%, #4aaa1a 50%, #74c236 100%);
+}
+
+/* ── Start Menu ─────────────────────────────────────────── */
+.start-menu {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  background: var(--xp-window-bg);
+  border: 1px solid #7f9db9;
+  box-shadow: 2px -2px 6px rgba(0,0,0,0.3);
+  min-width: 200px;
+  z-index: 1500;
+  padding: 2px 0;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px 5px 10px;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #000;
+}
+
+.start-menu-item:hover {
+  background: var(--xp-highlight);
+  color: #fff;
 }
 
 .taskbar-separator {
@@ -547,12 +583,13 @@ a { color: var(--xp-highlight); }
 }
 
 .project-card { display: flex; flex-direction: column; gap: 6px; }
+.project-card .tech-tags { margin-top: auto; }
 
 .tech-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
 .tech-tag {
   border: 1px solid #7f9db9;
-  background: #e8e4dc;
+  background: #f2f1ee;
   padding: 1px 5px;
   font-size: 10px;
   border-radius: 2px;
