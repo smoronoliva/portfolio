@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide — Sebastian Moron Portfolio</title>
+  <link rel="stylesheet" href="css/win95.css">
+  <style>
+    /* ── Styleguide overrides & layout ─────────────────────── */
+    body {
+      overflow: auto !important;
+      background: #f5f4f0 !important;
+      color: #1a1a1a;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    body::before { display: none !important; }
+
+    /* ── Styleguide shell ───────────────────────────────────── */
+    .sg-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+
+    .sg-header {
+      border-bottom: 3px solid #0a246a;
+      padding-bottom: 20px;
+      margin-bottom: 48px;
+    }
+
+    .sg-header h1 {
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 26px;
+      font-weight: bold;
+      color: #0a246a;
+      margin-bottom: 4px;
+      border: none;
+      padding: 0;
+    }
+
+    .sg-header p {
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 13px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ── Section ────────────────────────────────────────────── */
+    .sg-section {
+      margin-bottom: 56px;
+    }
+
+    .sg-section-title {
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #316ac5;
+      margin-bottom: 20px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #d0cdc6;
+    }
+
+    .sg-subsection-title {
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      color: #0a246a;
+      margin: 24px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Color swatches ─────────────────────────────────────── */
+    .sg-swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .sg-swatch {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .sg-swatch-block {
+      height: 60px;
+    }
+
+    .sg-swatch-info {
+      padding: 8px 10px;
+      background: #fff;
+      border-top: 1px solid #e0ddd8;
+    }
+
+    .sg-swatch-name {
+      font-size: 11px;
+      font-weight: bold;
+      color: #1a1a1a;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sg-swatch-hex {
+      font-size: 10px;
+      color: #666;
+      font-family: 'Courier New', monospace;
+    }
+
+    .sg-swatch-var {
+      display: block;
+      font-size: 10px;
+      color: #316ac5;
+      font-family: 'Courier New', monospace;
+      margin-top: 1px;
+    }
+
+    /* ── Gradient swatches ──────────────────────────────────── */
+    .sg-gradients {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .sg-gradient {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .sg-gradient-block {
+      height: 50px;
+    }
+
+    .sg-gradient-info {
+      padding: 8px 10px;
+      background: #fff;
+      border-top: 1px solid #e0ddd8;
+    }
+
+    .sg-gradient-name {
+      font-size: 11px;
+      font-weight: bold;
+      color: #1a1a1a;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sg-gradient-code {
+      font-size: 9.5px;
+      color: #555;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    /* ── Type specimens ─────────────────────────────────────── */
+    .sg-type-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      margin-bottom: 24px;
+    }
+
+    .sg-type-table th {
+      text-align: left;
+      padding: 6px 10px;
+      background: #eae7e0;
+      border: 1px solid #d0cdc6;
+      font-weight: bold;
+      color: #0a246a;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sg-type-table td {
+      padding: 10px 10px;
+      border: 1px solid #e0ddd8;
+      vertical-align: middle;
+      background: #fff;
+    }
+
+    .sg-type-table td.sg-example {
+      background: #ece9d8;
+    }
+
+    /* ── Spacing table ──────────────────────────────────────── */
+    .sg-spacing {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .sg-spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+    }
+
+    .sg-spacing-bar-wrap {
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .sg-spacing-bar {
+      background: #316ac5;
+      height: 16px;
+      border-radius: 2px;
+    }
+
+    .sg-spacing-label {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #1a1a1a;
+      width: 36px;
+      flex-shrink: 0;
+    }
+
+    .sg-spacing-desc {
+      color: #555;
+      font-size: 11px;
+    }
+
+    /* ── Z-index table ──────────────────────────────────────── */
+    .sg-z-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      margin-bottom: 24px;
+    }
+
+    .sg-z-table th {
+      text-align: left;
+      padding: 6px 10px;
+      background: #eae7e0;
+      border: 1px solid #d0cdc6;
+      font-weight: bold;
+      color: #0a246a;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sg-z-table td {
+      padding: 7px 10px;
+      border: 1px solid #e0ddd8;
+      background: #fff;
+      vertical-align: middle;
+    }
+
+    .sg-z-table td:first-child {
+      font-family: 'Courier New', monospace;
+      color: #316ac5;
+      width: 80px;
+    }
+
+    /* ── Component stage ────────────────────────────────────── */
+    .sg-stage {
+      background: #ece9d8;
+      border: 1px solid #b5b0a0;
+      border-radius: 4px;
+      padding: 24px;
+      margin-bottom: 8px;
+    }
+
+    .sg-stage-dark {
+      background: #236bcc;
+      border-color: #1a56c4;
+    }
+
+    .sg-stage-note {
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 10px;
+      color: #777;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .sg-component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    /* ── Class reference table ──────────────────────────────── */
+    .sg-class-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      margin-bottom: 24px;
+    }
+
+    .sg-class-table th {
+      text-align: left;
+      padding: 6px 10px;
+      background: #eae7e0;
+      border: 1px solid #d0cdc6;
+      font-weight: bold;
+      color: #0a246a;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sg-class-table td {
+      padding: 7px 10px;
+      border: 1px solid #e0ddd8;
+      background: #fff;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .sg-class-table tr:nth-child(even) td {
+      background: #faf9f7;
+    }
+
+    .sg-class-table td:first-child {
+      font-family: 'Courier New', monospace;
+      color: #0a246a;
+      white-space: nowrap;
+      font-size: 10.5px;
+      width: 220px;
+    }
+
+    .sg-class-table td:last-child {
+      color: #333;
+    }
+
+    .sg-tag-category {
+      font-size: 9px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #316ac5;
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+
+    /* ── Suppress win95.css h1/h2/h3 inside sg-wrap where not in .stage ── */
+    .sg-wrap > h1,
+    .sg-wrap > h2,
+    .sg-wrap > h3 { all: unset; }
+
+    /* Keep headings normal inside the stage areas */
+    .sg-stage h1,
+    .sg-stage h2,
+    .sg-stage h3,
+    .sg-stage p,
+    .sg-stage ul,
+    .sg-stage a { /* inherits from win95.css */ }
+  </style>
+</head>
+<body>
+<div class="sg-wrap">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <div class="sg-header">
+    <h1>Portfolio Style Guide</h1>
+    <p>Sebastian Moron — Windows XP Luna Theme &nbsp;·&nbsp; Generated from <code>css/win95.css</code></p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       1. DESIGN TOKENS
+  ══════════════════════════════════════════════════════ -->
+  <div class="sg-section">
+    <div class="sg-section-title">1 · Design Tokens — Colors</div>
+
+    <div class="sg-subsection-title">CSS Variables</div>
+    <div class="sg-swatches">
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#236bcc"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Desktop Blue</span>
+          <span class="sg-swatch-hex">#236bcc</span>
+          <span class="sg-swatch-var">--xp-desktop</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#ece9d8; border-bottom:1px solid #d0cdc6"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Window Beige</span>
+          <span class="sg-swatch-hex">#ece9d8</span>
+          <span class="sg-swatch-var">--xp-window-bg</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#ffffff; border-bottom:1px solid #d0cdc6"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">White</span>
+          <span class="sg-swatch-hex">#ffffff</span>
+          <span class="sg-swatch-var">--xp-white</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#0a246a"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Navy / Border</span>
+          <span class="sg-swatch-hex">#0a246a</span>
+          <span class="sg-swatch-var">--xp-border / --xp-navy</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#316ac5"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Highlight Blue</span>
+          <span class="sg-swatch-hex">#316ac5</span>
+          <span class="sg-swatch-var">--xp-highlight</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-subsection-title">Supporting Colors</div>
+    <div class="sg-swatches">
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#7f9db9"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Border / UI Steel</span>
+          <span class="sg-swatch-hex">#7f9db9</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#b5b0a0"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Separator Warm Gray</span>
+          <span class="sg-swatch-hex">#b5b0a0</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#d4d0c8"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Scrollbar Track</span>
+          <span class="sg-swatch-hex">#d4d0c8</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#f2f1ee; border-bottom:1px solid #d0cdc6"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Tag Background</span>
+          <span class="sg-swatch-hex">#f2f1ee</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#666"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Muted Text</span>
+          <span class="sg-swatch-hex">#666666</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#333"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Secondary Text</span>
+          <span class="sg-swatch-hex">#333333</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-block" style="background:#1a1a1a"></div>
+        <div class="sg-swatch-info">
+          <span class="sg-swatch-name">Photo Viewer BG</span>
+          <span class="sg-swatch-hex">#1a1a1a</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-subsection-title">Gradients</div>
+    <div class="sg-gradients">
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#5ea3f8 0%,#3882e0 30%,#2a71d5 50%,#1e5fcc 51%,#2e72d8 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Title Bar</span>
+          <span class="sg-gradient-code">#5ea3f8 → #3882e0 → #2a71d5 / #1e5fcc → #2e72d8</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#6e90e8,#3060c8 40%,#1f50b0 60%,#3060c8)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Title Bar Button (Blue)</span>
+          <span class="sg-gradient-code">#6e90e8 → #3060c8 → #1f50b0 → #3060c8</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#f09080,#c84030 40%,#a82818 60%,#c84030)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Title Bar Button (Red / Close)</span>
+          <span class="sg-gradient-code">#f09080 → #c84030 → #a82818 → #c84030</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#f0f0e8 0%,#deded8 45%,#cecec8 50%,#deded8 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Button (Default)</span>
+          <span class="sg-gradient-code">#f0f0e8 → #deded8 → #cecec8 → #deded8</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#e0ecff 0%,#c8dcf8 45%,#b8cce8 50%,#c8dcf8 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Button (Hover)</span>
+          <span class="sg-gradient-code">#e0ecff → #c8dcf8 → #b8cce8 → #c8dcf8</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#3c84e5 0%,#2462c8 4%,#1a56c4 94%,#1248b0 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Taskbar</span>
+          <span class="sg-gradient-code">#3c84e5 → #2462c8 → #1a56c4 → #1248b0</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#74c236 0%,#4aaa1a 40%,#3a9010 50%,#4aaa1a 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Start Button (Green)</span>
+          <span class="sg-gradient-code">#74c236 → #4aaa1a → #3a9010 → #4aaa1a</span>
+        </div>
+      </div>
+      <div class="sg-gradient">
+        <div class="sg-gradient-block" style="background:linear-gradient(to bottom,#3878d4 0%,#2060c0 50%,#1850a8 100%)"></div>
+        <div class="sg-gradient-info">
+          <span class="sg-gradient-name">Taskbar Window Button</span>
+          <span class="sg-gradient-code">#3878d4 → #2060c0 → #1850a8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       2. TYPOGRAPHY
+  ══════════════════════════════════════════════════════ -->
+  <div class="sg-section">
+    <div class="sg-section-title">2 · Typography</div>
+
+    <div class="sg-subsection-title">Font Stack</div>
+    <table class="sg-type-table">
+      <thead>
+        <tr><th>Variable</th><th>Value</th><th>Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>--xp-font</code></td>
+          <td>Tahoma, 'MS Sans Serif', Arial, sans-serif</td>
+          <td>All text throughout the UI</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sg-subsection-title">Type Scale</div>
+    <table class="sg-type-table">
+      <thead>
+        <tr><th>Element</th><th>Size</th><th>Weight</th><th>Color</th><th>Other</th><th style="width:200px">Live Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>h1</code></td>
+          <td>16px</td>
+          <td>bold</td>
+          <td>#0a246a</td>
+          <td>margin-bottom: 12px</td>
+          <td class="sg-example"><h1 style="margin:0">Window Title</h1></td>
+        </tr>
+        <tr>
+          <td><code>h2</code></td>
+          <td>11px</td>
+          <td>bold</td>
+          <td>#0a246a</td>
+          <td>border-bottom, padding-bottom: 2px</td>
+          <td class="sg-example"><h2 style="margin:0">Section Header</h2></td>
+        </tr>
+        <tr>
+          <td><code>h3</code></td>
+          <td>11px</td>
+          <td>bold</td>
+          <td>inherit (#000)</td>
+          <td>margin-bottom: 4px</td>
+          <td class="sg-example"><h3 style="margin:0">Card Title</h3></td>
+        </tr>
+        <tr>
+          <td><code>p</code></td>
+          <td>11px</td>
+          <td>normal</td>
+          <td>#000</td>
+          <td>line-height: 1.6, margin-bottom: 8px</td>
+          <td class="sg-example"><p style="margin:0">Body paragraph text</p></td>
+        </tr>
+        <tr>
+          <td><code>a</code></td>
+          <td>11px</td>
+          <td>normal</td>
+          <td>#316ac5</td>
+          <td>—</td>
+          <td class="sg-example"><a href="#">Link text</a></td>
+        </tr>
+        <tr>
+          <td><code>.title-bar-text</code></td>
+          <td>12px</td>
+          <td>bold</td>
+          <td>#fff</td>
+          <td>text-shadow, truncates with ellipsis</td>
+          <td style="background:linear-gradient(to bottom,#5ea3f8,#2e72d8);padding:6px 10px"><span class="title-bar-text">Window Title Bar</span></td>
+        </tr>
+        <tr>
+          <td><code>.job-date</code></td>
+          <td>10px</td>
+          <td>normal</td>
+          <td>#666</td>
+          <td>white-space: nowrap</td>
+          <td class="sg-example"><span class="job-date">Aug 2022 — Apr 2025</span></td>
+        </tr>
+        <tr>
+          <td><code>.tech-tag</code></td>
+          <td>10px</td>
+          <td>normal</td>
+          <td>#000</td>
+          <td>border, bg #f2f1ee</td>
+          <td class="sg-example"><span class="tech-tag">Figma</span></td>
+        </tr>
+        <tr>
+          <td><code>.slide-title</code></td>
+          <td>14px</td>
+          <td>bold</td>
+          <td>#0a246a</td>
+          <td>border-bottom, margin-bottom: 14px</td>
+          <td class="sg-example"><span class="slide-title" style="display:block;margin:0;padding-bottom:4px">Slide Title</span></td>
+        </tr>
+        <tr>
+          <td><code>.metric-value</code></td>
+          <td>30px</td>
+          <td>bold</td>
+          <td>#316ac5</td>
+          <td>line-height: 1</td>
+          <td class="sg-example"><span class="metric-value">31</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       3. SPACING & SIZING
+  ══════════════════════════════════════════════════════ -->
+  <div class="sg-section">
+    <div class="sg-section-title">3 · Spacing &amp; Sizing</div>
+
+    <div class="sg-subsection-title">Base Spacing Scale</div>
+    <div class="sg-spacing">
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">2px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:4px"></div></div>
+        <span class="sg-spacing-desc">Menu bar padding, status bar padding, small gaps</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">3px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:6px"></div></div>
+        <span class="sg-spacing-desc">Title bar button gap, button/window border-radius</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">4px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:8px"></div></div>
+        <span class="sg-spacing-desc">Icon gap, taskbar padding, title bar padding top/bottom</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">6px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:12px"></div></div>
+        <span class="sg-spacing-desc">Contact link gap, project card gap</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">8px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:16px"></div></div>
+        <span class="sg-spacing-desc">Window body padding, panel padding, grid gap — primary unit</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">12px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:24px"></div></div>
+        <span class="sg-spacing-desc">h1 margin-bottom, section-gap</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">16px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:32px"></div></div>
+        <span class="sg-spacing-desc">Dialog body padding, two-col photo thumbs width basis</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">28px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:56px"></div></div>
+        <span class="sg-spacing-desc">Title bar min-height</span>
+      </div>
+      <div class="sg-spacing-row">
+        <span class="sg-spacing-label">30px</span>
+        <div class="sg-spacing-bar-wrap"><div class="sg-spacing-bar" style="width:60px"></div></div>
+        <span class="sg-spacing-desc">Taskbar height — reserved at bottom of all fixed layers</span>
+      </div>
+    </div>
+
+    <div class="sg-subsection-title">Fixed Component Sizes</div>
+    <table class="sg-type-table">
+      <thead>
+        <tr><th>Component</th><th>Width</th><th>Height</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Title bar button</td><td>22px</td><td>21px</td></tr>
+        <tr><td>Taskbar</td><td>100%</td><td>30px</td></tr>
+        <tr><td>Taskbar window button</td><td>min 100px / max 160px</td><td>22px</td></tr>
+        <tr><td>Desktop icon</td><td>72px</td><td>auto</td></tr>
+        <tr><td>Icon thumbnail</td><td>36px</td><td>36px</td></tr>
+        <tr><td>XP scrollbar</td><td>16px</td><td>16px</td></tr>
+        <tr><td>About window</td><td>680px</td><td>auto</td></tr>
+        <tr><td>Projects window</td><td>720px</td><td>auto</td></tr>
+        <tr><td>Experience window</td><td>680px</td><td>auto</td></tr>
+        <tr><td>Contact window</td><td>480px</td><td>auto</td></tr>
+        <tr><td>Photo window</td><td>700px</td><td>520px</td></tr>
+        <tr><td>Case study window</td><td>760px</td><td>520px</td></tr>
+        <tr><td>Welcome dialog</td><td>min 320px / max 420px</td><td>auto</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sg-subsection-title">Z-Index Layers</div>
+    <table class="sg-z-table">
+      <thead>
+        <tr><th>z-index</th><th>Layer</th><th>Selector</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>Wallpaper</td><td><code>body::before</code></td></tr>
+        <tr><td>10</td><td>Desktop icons container</td><td><code>.desktop-icons</code></td></tr>
+        <tr><td>50</td><td>Window container</td><td><code>#desktop-windows</code></td></tr>
+        <tr><td>100+</td><td>Open windows (dynamic)</td><td><code>.spa-window</code></td></tr>
+        <tr><td>500</td><td>Dragging icon</td><td><code>.desktop-icon.dragging</code></td></tr>
+        <tr><td>1000</td><td>Taskbar</td><td><code>.taskbar</code></td></tr>
+        <tr><td>1500</td><td>Start menu</td><td><code>.start-menu</code></td></tr>
+        <tr><td>2000</td><td>Welcome dialog</td><td><code>.dialog-overlay</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       4. COMPONENT EXAMPLES
+  ══════════════════════════════════════════════════════ -->
+  <div class="sg-section">
+    <div class="sg-section-title">4 · Component Examples</div>
+
+    <!-- Window Chrome -->
+    <div class="sg-subsection-title">Window Chrome (Full)</div>
+    <p class="sg-stage-note">The complete window stack: title bar → menu bar → body → status bar. Used by all content windows.</p>
+    <div class="sg-stage" style="padding:16px">
+      <div class="win95-window" style="width:380px">
+        <div class="title-bar">
+          <span class="title-bar-text">💼 Projects — Portfolio</span>
+          <div class="title-bar-controls">
+            <button class="title-bar-btn spa-btn-minimize" style="pointer-events:none">_</button>
+            <button class="title-bar-btn spa-btn-maximize" style="pointer-events:none"></button>
+            <button class="title-bar-btn spa-btn-close" style="pointer-events:none">✕</button>
+          </div>
+        </div>
+        <div class="menu-bar">
+          <span class="menu-bar-item">File</span>
+          <span class="menu-bar-item">View</span>
+          <span class="menu-bar-item">Help</span>
+        </div>
+        <div class="window-body">
+          <h2>Section Header</h2>
+          <p>Window body content sits on the beige <code>#ece9d8</code> background with 8px padding on all sides.</p>
+        </div>
+        <div class="status-bar">
+          <span class="status-bar-field">Last updated 08/03/2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title Bar States -->
+    <div class="sg-subsection-title">Title Bar &amp; Buttons</div>
+    <p class="sg-stage-note">Buttons: minimize (blue, underscore label), maximize (blue, CSS-drawn square), close (red, ✕).</p>
+    <div class="sg-stage" style="padding:16px">
+      <div class="sg-component-row">
+        <div>
+          <div class="title-bar" style="border-radius:7px 7px 0 0;width:340px">
+            <span class="title-bar-text">📋 Experience — Portfolio</span>
+            <div class="title-bar-controls">
+              <button class="title-bar-btn spa-btn-minimize" style="pointer-events:none">_</button>
+              <button class="title-bar-btn spa-btn-maximize" style="pointer-events:none"></button>
+              <button class="title-bar-btn spa-btn-close" style="pointer-events:none">✕</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sg-component-row" style="margin-top:12px;align-items:center">
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Minimize</p>
+          <button class="title-bar-btn" style="pointer-events:none">_</button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Maximize</p>
+          <button class="title-bar-btn spa-btn-maximize" style="pointer-events:none"></button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Restore</p>
+          <button class="title-bar-btn spa-btn-maximize is-maximized" style="pointer-events:none"></button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Close</p>
+          <button class="title-bar-btn spa-btn-close" style="pointer-events:none">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="sg-subsection-title">Button (.btn)</div>
+    <p class="sg-stage-note">Used for actions and project links. Hover/active/focus states included below.</p>
+    <div class="sg-stage">
+      <div class="sg-component-row" style="align-items:center">
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Default</p>
+          <button class="btn">View Project</button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Hover</p>
+          <button class="btn" style="background:linear-gradient(to bottom,#e0ecff 0%,#c8dcf8 45%,#b8cce8 50%,#c8dcf8 100%);border-color:#316ac5">View Project</button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Active / Pressed</p>
+          <button class="btn" style="background:linear-gradient(to bottom,#b8cce8,#c8dcf8 50%,#d8ecff);box-shadow:inset 0 1px 2px rgba(0,0,0,0.2)">View Project</button>
+        </div>
+        <div>
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">Focus</p>
+          <button class="btn" style="outline:1px dotted #000;outline-offset:-4px">Enter portfolio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Panels -->
+    <div class="sg-subsection-title">Content Panels</div>
+    <p class="sg-stage-note"><code>.panel-raised</code> — beige background, subtle outer shadow. <code>.panel-sunken</code> — white background, inset shadow. Both share the same <code>#7f9db9</code> border.</p>
+    <div class="sg-stage">
+      <div class="sg-component-row" style="align-items:stretch">
+        <div style="flex:1">
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">.panel-raised</p>
+          <div class="panel-raised">
+            <h2>Section</h2>
+            <p style="margin:0">Beige bg, outer box-shadow. Used for grouped content on the beige window surface.</p>
+          </div>
+        </div>
+        <div style="flex:1">
+          <p style="font-family:Tahoma,Arial;font-size:10px;color:#555;margin-bottom:4px">.panel-sunken</p>
+          <div class="panel-sunken">
+            <h2>Section</h2>
+            <p style="margin:0">White bg, inset shadow. Used for content that should appear recessed — bios, job entries, project cards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Card -->
+    <div class="sg-subsection-title">Project Card</div>
+    <p class="sg-stage-note">A <code>.panel-sunken.project-card</code> inside a <code>.project-grid</code> (2-col). Tags pushed to bottom via <code>margin-top: auto</code>.</p>
+    <div class="sg-stage">
+      <div class="project-grid" style="max-width:500px">
+        <div class="panel-sunken project-card">
+          <h3>🌐 New portfolio website</h3>
+          <p>Vibe-coded a Windows XP themed portfolio built with Claude Code.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Claude Code</span>
+            <span class="tech-tag">GitHub</span>
+            <span class="tech-tag">Terminal</span>
+          </div>
+          <div><a href="#" class="btn">View Project</a></div>
+        </div>
+        <div class="panel-sunken project-card">
+          <h3>📊 Analytics platform</h3>
+          <p>Redesigned data visualisation dashboards for Digistore24.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Lyssna</span>
+          </div>
+          <div><a href="#" class="btn">View Project</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Tags -->
+    <div class="sg-subsection-title">Tech Tags (.tech-tag)</div>
+    <p class="sg-stage-note">Small pill labels used in project cards. Wrapped in <code>.tech-tags</code>.</p>
+    <div class="sg-stage">
+      <div class="tech-tags">
+        <span class="tech-tag">Figma</span>
+        <span class="tech-tag">Claude Code</span>
+        <span class="tech-tag">PostHog</span>
+        <span class="tech-tag">Zoom</span>
+        <span class="tech-tag">Notion</span>
+        <span class="tech-tag">Pen &amp; Paper</span>
+      </div>
+    </div>
+
+    <!-- Job Entry -->
+    <div class="sg-subsection-title">Job Entry</div>
+    <p class="sg-stage-note">A <code>.job-entry</code> containing a <code>.panel-sunken</code> with a <code>.job-header</code> row and a bullet list.</p>
+    <div class="sg-stage">
+      <div class="job-entry" style="margin:0">
+        <div class="panel-sunken">
+          <div class="job-header">
+            <strong>Digistore24</strong>
+            <span class="job-date">Aug 2025 — Present</span>
+          </div>
+          <h3>Senior Product Designer</h3>
+          <ul>
+            <li>Own the end-to-end design process, from ideation to final execution</li>
+            <li>Conduct user research, including interviews, usability testing, and competitor analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="sg-subsection-title">Menu Bar</div>
+    <p class="sg-stage-note">Sits directly below the title bar. Items highlight with <code>--xp-highlight</code> on hover.</p>
+    <div class="sg-stage" style="padding:0">
+      <div class="menu-bar">
+        <span class="menu-bar-item">File</span>
+        <span class="menu-bar-item" style="background:#316ac5;color:#fff">View</span>
+        <span class="menu-bar-item">Help</span>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="sg-subsection-title">Status Bar</div>
+    <p class="sg-stage-note">Sits at the bottom of every content window. Contains one or more <code>.status-bar-field</code> cells.</p>
+    <div class="sg-stage" style="padding:0">
+      <div class="status-bar">
+        <span class="status-bar-field">Last updated 08/03/2026</span>
+      </div>
+    </div>
+
+    <!-- Dialog -->
+    <div class="sg-subsection-title">Welcome Dialog</div>
+    <p class="sg-stage-note">Centered modal. Same window chrome as <code>.win95-window</code> but uses <code>.win95-dialog</code> (fixed min/max width, no resize).</p>
+    <div class="sg-stage">
+      <div class="win95-dialog" style="position:relative;z-index:auto">
+        <div class="title-bar">
+          <span class="title-bar-text">Welcome</span>
+          <div class="title-bar-controls">
+            <button class="title-bar-btn spa-btn-close" style="pointer-events:none">✕</button>
+          </div>
+        </div>
+        <div class="dialog-body">
+          <span class="dialog-icon">👋</span>
+          <div class="dialog-text">
+            <p><strong>Hello, I'm Sebastián!</strong></p>
+            <p style="margin:0">Welcome to my portfolio. Double-click on any desktop icon to discover more.</p>
+          </div>
+        </div>
+        <div class="dialog-buttons">
+          <button class="btn">Enter portfolio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Links -->
+    <div class="sg-subsection-title">Contact Links (.contact-link)</div>
+    <p class="sg-stage-note">Full-width rows inside a <code>.panel-sunken</code>. Highlight on hover with <code>--xp-highlight</code>.</p>
+    <div class="sg-stage">
+      <div class="panel-sunken" style="max-width:320px">
+        <div class="contact-links">
+          <a class="contact-link" href="#">
+            <span>📧</span><span>smoronoliva@gmail.com</span>
+          </a>
+          <a class="contact-link" href="#" style="background:#316ac5;color:#fff">
+            <span>💼</span><span>linkedin.com/in/smoronoliva</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="sg-subsection-title">Taskbar &amp; Start Button</div>
+    <p class="sg-stage-note">Fixed to viewport bottom. Green Start pill, separator, window buttons, tray area with clock.</p>
+    <div class="sg-stage-dark sg-stage" style="padding:0;height:34px;display:flex;align-items:center">
+      <div style="display:flex;align-items:center;gap:4px;padding:2px 4px;width:100%">
+        <button class="taskbar-start-btn" style="pointer-events:none">
+          <span style="font-size:11px">▶</span> Start
+        </button>
+        <div class="taskbar-separator"></div>
+        <button class="taskbar-window-btn active" style="pointer-events:none">💼 Projects</button>
+        <button class="taskbar-window-btn" style="pointer-events:none">📋 Experience</button>
+        <div class="taskbar-tray" style="margin-left:auto">
+          <span>📍 Valencia, Spain</span>
+          <span class="taskbar-tray-sep"></span>
+          <span>14:32</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study: Metric Cards -->
+    <div class="sg-subsection-title">Impact Metric Cards (.metric-card)</div>
+    <p class="sg-stage-note">2×2 grid used in the case study Impact slide. Big number in <code>--xp-highlight</code> blue, small label below.</p>
+    <div class="sg-stage">
+      <div class="metric-cards" style="max-width:420px">
+        <div class="metric-card">
+          <span class="metric-value">31</span>
+          <span class="metric-label">experiments added to the product roadmap</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value">12</span>
+          <span class="metric-label">user personas created</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value">10</span>
+          <span class="metric-label">testimonials collected</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label"><strong>MOVERS</strong> became part of onboarding for AMs &amp; Customer Service</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study Nav -->
+    <div class="sg-subsection-title">Slideshow Navigation</div>
+    <p class="sg-stage-note">Prev/next buttons + dot indicators + slide counter. Used at the bottom of the case study window body.</p>
+    <div class="sg-stage">
+      <div class="case-study-footer" style="border-top:none;padding:0">
+        <button class="btn" disabled>&#9664; Prev</button>
+        <div class="cs-nav-center">
+          <div class="cs-dots">
+            <button class="cs-dot active"></button>
+            <button class="cs-dot"></button>
+            <button class="cs-dot"></button>
+            <button class="cs-dot"></button>
+            <button class="cs-dot"></button>
+            <button class="cs-dot"></button>
+            <button class="cs-dot"></button>
+          </div>
+          <span class="cs-counter">1 / 7</span>
+        </div>
+        <button class="btn">Next &#9654;</button>
+      </div>
+    </div>
+
+    <!-- Desktop Icon -->
+    <div class="sg-subsection-title">Desktop Icon (.desktop-icon)</div>
+    <p class="sg-stage-note">72px wide, flex column, draggable. Label highlights on hover/focus. Position stored in <code>localStorage</code>.</p>
+    <div class="sg-stage-dark sg-stage">
+      <div style="display:flex;gap:16px">
+        <div class="desktop-icon" style="position:static;pointer-events:none">
+          <span class="icon-glyph">💼</span>
+          <span class="icon-label">Projects</span>
+        </div>
+        <div class="desktop-icon" style="position:static;pointer-events:none">
+          <span class="icon-label" style="background:#316ac5;border-radius:2px">About Me</span>
+          <span class="icon-glyph">👤</span>
+          <span style="font-size:9px;color:rgba(255,255,255,0.6);font-family:Tahoma,Arial">hover/focus state</span>
+        </div>
+        <div class="desktop-icon" style="position:static;pointer-events:none">
+          <img class="icon-thumb" src="references/about-me/Cusco.jpeg" alt="Cusco" onerror="this.style.display='none'">
+          <span class="icon-label">Cusco</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       5. CSS CLASS REFERENCE
+  ══════════════════════════════════════════════════════ -->
+  <div class="sg-section">
+    <div class="sg-section-title">5 · CSS Class Reference</div>
+
+    <table class="sg-class-table">
+      <thead>
+        <tr><th>Class</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Window Chrome</td></tr>
+        <tr><td>.win95-window</td><td>Base window shell. Beige bg, navy border, rounded top corners (8px), drop shadow. Use as a flex column container.</td></tr>
+        <tr><td>.win95-dialog</td><td>Fixed-width modal variant (min 320px, max 420px). Same chrome as .win95-window but not draggable/resizable.</td></tr>
+        <tr><td>.title-bar</td><td>Blue gradient header row. Contains .title-bar-text + .title-bar-controls.</td></tr>
+        <tr><td>.title-bar-text</td><td>Bold 12px white text in the title bar. Truncates with ellipsis.</td></tr>
+        <tr><td>.title-bar-controls</td><td>Flex row for title bar action buttons (gap 3px).</td></tr>
+        <tr><td>.title-bar-btn</td><td>22×21px rounded button on the title bar. Blue gradient by default.</td></tr>
+        <tr><td>.spa-btn-close</td><td>Modifier on .title-bar-btn — applies red gradient. Also matches #dialog-close-btn.</td></tr>
+        <tr><td>.spa-btn-minimize</td><td>Minimize button on a .spa-window title bar (renders "_").</td></tr>
+        <tr><td>.spa-btn-maximize</td><td>Maximize button — CSS-drawn square icon via ::before/::after pseudo-elements.</td></tr>
+        <tr><td>.spa-btn-maximize.is-maximized</td><td>Restore state of maximize button — two overlapping squares.</td></tr>
+        <tr><td>.menu-bar</td><td>Secondary nav row below title bar. Beige bg, bottom border.</td></tr>
+        <tr><td>.menu-bar-item</td><td>Clickable label in the menu bar. Highlights with --xp-highlight on hover.</td></tr>
+        <tr><td>.window-body</td><td>Scrollable content area. 8px padding, beige bg, flex: 1.</td></tr>
+        <tr><td>.status-bar</td><td>Fixed-height row at window bottom. Beige bg, top border.</td></tr>
+        <tr><td>.status-bar-field</td><td>Individual cell inside .status-bar. Inset border, fills available width.</td></tr>
+        <tr><td>.win95-window.minimized</td><td>Hides .window-body, .menu-bar, .status-bar — shows only title bar.</td></tr>
+        <tr><td>.spa-window.maximized</td><td>Fills the desktop area (inset: 0) with no border-radius.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">SPA Window System</td></tr>
+        <tr><td>.spa-window</td><td>Absolutely-positioned draggable/resizable window inside #desktop-windows. resize: both.</td></tr>
+        <tr><td>.spa-title-bar</td><td>Marks a title bar as the drag handle in the window manager.</td></tr>
+        <tr><td>.photo-window</td><td>Modifier for photo viewer windows — window-body is flex:1, padding:0, overflow:hidden.</td></tr>
+        <tr><td>.case-study-spa-window</td><td>Modifier for the case study window — window-body is flex:1 flex-column, allowing slide panel to grow.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Content Panels</td></tr>
+        <tr><td>.panel-raised</td><td>Beige bg, steel border, subtle outer shadow. Used for secondary groupings on the beige surface.</td></tr>
+        <tr><td>.panel-sunken</td><td>White bg, steel border, inset shadow. Primary content container — bio, cards, job entries.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Controls</td></tr>
+        <tr><td>.btn</td><td>Standard XP-style push button. Gray gradient, steel border, 4px 14px padding. Use as &lt;button&gt; or &lt;a&gt;.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Taskbar</td></tr>
+        <tr><td>.taskbar</td><td>Fixed bottom bar. Blue gradient, 30px tall, z-index 1000.</td></tr>
+        <tr><td>.taskbar-start-btn</td><td>Green pill-shaped Start button. Bold italic text.</td></tr>
+        <tr><td>.taskbar-separator</td><td>1px white vertical rule used between taskbar zones.</td></tr>
+        <tr><td>.taskbar-window-btn</td><td>Button representing an open window. Blue gradient, 22px tall.</td></tr>
+        <tr><td>.taskbar-window-btn.active</td><td>Inverted gradient + inset shadow — marks the currently focused window.</td></tr>
+        <tr><td>.taskbar-tray</td><td>Right-aligned clock/location area. Semi-transparent dark bg.</td></tr>
+        <tr><td>.taskbar-tray-sep</td><td>1px white vertical separator within the tray.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Desktop Icons</td></tr>
+        <tr><td>.desktop-icons</td><td>Fixed full-screen container for all icons. pointer-events: none (icons re-enable individually).</td></tr>
+        <tr><td>.desktop-icon</td><td>72px wide flex-column icon. Draggable via JS; position persisted in localStorage.</td></tr>
+        <tr><td>.desktop-icon.dragging</td><td>Applied during drag — grabbing cursor, slight opacity, z-index 500.</td></tr>
+        <tr><td>.icon-glyph</td><td>32px emoji icon with drop-shadow filter.</td></tr>
+        <tr><td>.icon-label</td><td>11px white text below the icon. Highlights with --xp-highlight on hover/focus.</td></tr>
+        <tr><td>.icon-thumb</td><td>36×36px square thumbnail image (used for photo/app icons).</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Start Menu</td></tr>
+        <tr><td>.start-menu</td><td>Popover above the Start button. Beige bg, steel border, z-index 1500.</td></tr>
+        <tr><td>.start-menu-item</td><td>Row inside .start-menu. Highlights with --xp-highlight on hover.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Dialog</td></tr>
+        <tr><td>.dialog-overlay</td><td>Full-viewport flex centering container. z-index 2000. Hidden via .hidden class.</td></tr>
+        <tr><td>.dialog-body</td><td>Flex row with icon + text content area. 16px padding.</td></tr>
+        <tr><td>.dialog-icon</td><td>36px emoji used as a decorative icon in dialogs.</td></tr>
+        <tr><td>.dialog-buttons</td><td>Centered row of action buttons at the dialog bottom.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Layout Helpers</td></tr>
+        <tr><td>.two-col</td><td>Flex row with 8px gap.</td></tr>
+        <tr><td>.two-col-main</td><td>flex: 1 column inside .two-col.</td></tr>
+        <tr><td>.two-col-side</td><td>Fixed 200px sidebar column inside .two-col.</td></tr>
+        <tr><td>.project-grid</td><td>2-column CSS grid with 8px gap. Used in the Projects window.</td></tr>
+        <tr><td>.project-card</td><td>flex-column card with 6px gap. Tech tags pushed to bottom via margin-top:auto.</td></tr>
+        <tr><td>.tech-tags</td><td>flex-wrap row of .tech-tag pills, 4px gap.</td></tr>
+        <tr><td>.tech-tag</td><td>10px pill label. Light gray bg (#f2f1ee), steel border, 2px radius.</td></tr>
+        <tr><td>.job-entry</td><td>Wrapper for a work history item. 8px bottom margin.</td></tr>
+        <tr><td>.job-header</td><td>Flex row with space-between — company name left, date right.</td></tr>
+        <tr><td>.job-date</td><td>10px muted (#666) white-space:nowrap date range.</td></tr>
+        <tr><td>.contact-links</td><td>flex-column list of .contact-link rows, 6px gap.</td></tr>
+        <tr><td>.contact-link</td><td>Full-width row with icon + text. Highlights entirely on hover.</td></tr>
+        <tr><td>.section-gap</td><td>Utility class — adds 12px top margin.</td></tr>
+        <tr><td>.desktop-page</td><td>Full-viewport centered flex layout with taskbar offset (padding-bottom: 44px).</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">About Window</td></tr>
+        <tr><td>.about-bio</td><td>Bio panel wrapper — 8px bottom margin.</td></tr>
+        <tr><td>.about-three-col</td><td>Flex row of three equal-width panels (Interests, Skills, Tools).</td></tr>
+        <tr><td>.about-photo-viewer</td><td>300px tall flex row for main image + thumbnail strip.</td></tr>
+        <tr><td>.about-photo-main</td><td>flex:1 main photo area. Image fills via object-fit:cover.</td></tr>
+        <tr><td>.about-photo-thumbs</td><td>100px fixed-width column of clickable thumbnail images.</td></tr>
+        <tr><td>.about-thumb</td><td>Thumbnail image. Gets 2px colored border on hover (.highlight) and active (.navy).</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Photo Viewer</td></tr>
+        <tr><td>.photo-viewer-full</td><td>Full-size photo display. Dark (#1a1a1a) bg, image centered via flex + object-fit:contain.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Case Study Slideshow</td></tr>
+        <tr><td>.cs-slide-panel</td><td>flex:1 scrollable content area inside the case study window body. Inherits beige bg.</td></tr>
+        <tr><td>.case-study-footer</td><td>Flex row with prev/next buttons + centered dot nav. Pinned at bottom of window body.</td></tr>
+        <tr><td>.cs-nav-center</td><td>flex row grouping .cs-dots + .cs-counter.</td></tr>
+        <tr><td>.cs-dots</td><td>flex row of .cs-dot buttons, 5px gap.</td></tr>
+        <tr><td>.cs-dot</td><td>8×8px circle button for slide navigation. Gray by default.</td></tr>
+        <tr><td>.cs-dot.active</td><td>Active dot state — filled with --xp-highlight.</td></tr>
+        <tr><td>.cs-counter</td><td>11px muted (#555) text showing "1 / 7" slide position.</td></tr>
+        <tr><td>.slide-title</td><td>14px bold navy heading for each slide. Separated from content by a bottom border.</td></tr>
+        <tr><td>.slide-meta-panel</td><td>Spacing modifier on .panel-sunken used in the slide meta/context rows.</td></tr>
+        <tr><td>.metric-cards</td><td>2×2 grid of .metric-card elements, 10px gap.</td></tr>
+        <tr><td>.metric-card</td><td>White panel-sunken style card with centered flex content.</td></tr>
+        <tr><td>.metric-value</td><td>30px bold highlight-blue number inside a .metric-card.</td></tr>
+        <tr><td>.metric-label</td><td>11px gray description text below .metric-value.</td></tr>
+
+        <tr><td colspan="2" style="background:#eae7e0;font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#0a246a">Utility</td></tr>
+        <tr><td>.raised</td><td>Generic raised surface — beige bg, steel border, 3px radius.</td></tr>
+        <tr><td>.sunken</td><td>Generic sunken surface — white bg, steel border, inset shadow.</td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-family:Tahoma,Arial;font-size:10px;color:#999;text-align:center;margin-top:32px">
+    Sebastian Moron Portfolio · Style Guide · Generated 2026 · <a href="index.html" style="color:#316ac5">← Back to Portfolio</a>
+  </p>
+
+</div>
+</body>
+</html>

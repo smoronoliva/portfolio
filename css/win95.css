@@ -251,6 +251,12 @@ body::before {
   outline-offset: -4px;
 }
 
+.btn.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* ── Taskbar ────────────────────────────────────────────── */
 .taskbar {
   position: fixed;
@@ -738,11 +744,14 @@ a { color: var(--xp-highlight); }
   flex: 1;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .photo-viewer-full {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -756,10 +765,131 @@ a { color: var(--xp-highlight); }
   display: block;
 }
 
+.photo-caption {
+  flex-shrink: 0;
+  background: var(--xp-window-bg);
+  border-top: 1px solid #b5b0a0;
+  padding: 6px 10px;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Experience window — body scrolls through work history */
+#win-experience .window-body { flex: 1; }
+
 /* Taskbar windows area */
 #taskbar-windows {
   display: flex;
   gap: 4px;
   flex: 1;
   overflow: hidden;
+}
+
+/* ── Case Study Slideshow ───────────────────────────────── */
+.case-study-spa-window .window-body {
+  flex: 1 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-slide-panel {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.case-study-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid #b5b0a0;
+  flex-shrink: 0;
+}
+
+.cs-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.cs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c8c4bc;
+  border: 1px solid #7f9db9;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cs-dot.active {
+  background: var(--xp-highlight);
+  border-color: var(--xp-navy);
+}
+
+.cs-counter {
+  font-size: 11px;
+  font-family: var(--xp-font);
+  color: #555;
+  white-space: nowrap;
+}
+
+.slide-title {
+  font-family: var(--xp-font);
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--xp-navy);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #b5b0a0;
+}
+
+.slide-meta-panel { margin-bottom: 0; }
+.slide-meta-panel p { margin-bottom: 5px; }
+.slide-meta-panel p:last-child { margin-bottom: 0; }
+
+.metric-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.metric-card {
+  background: var(--xp-white);
+  border: 1px solid #7f9db9;
+  border-radius: 2px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.metric-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--xp-highlight);
+  line-height: 1;
+  font-family: var(--xp-font);
+}
+
+.metric-label {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #333;
+  font-family: var(--xp-font);
 }

@@ -58,21 +58,27 @@
       experience: {
         title: '📋 Experience — Portfolio',
         icon: '📋', label: 'Experience',
-        width: 680
+        width: 680, height: 560
       },
       contact: {
         title: '📧 Contact — Portfolio',
         icon: '📧', label: 'Contact',
         width: 480
       },
-      'photo-bocas-del-toro': { title: 'Bocas del Toro', icon: '🖼', label: 'Bocas del Toro', width: 700, height: 520, photo: true, src: 'references/about-me/Bocas del Toro.JPG' },
-      'photo-morocco':        { title: 'Morocco',        icon: '🖼', label: 'Morocco',        width: 700, height: 520, photo: true, src: 'references/about-me/Morocco.JPG' },
-      'photo-cusco':          { title: 'Cusco',          icon: '🖼', label: 'Cusco',          width: 700, height: 520, photo: true, src: 'references/about-me/Cusco.jpeg' },
-      'photo-santa-marta':    { title: 'Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Santa Marta.jpeg' },
-      'photo-costa-rica':     { title: 'Costa Rica',     icon: '🖼', label: 'Costa Rica',     width: 700, height: 520, photo: true, src: 'references/about-me/Costa Rica.jpeg' },
-      'photo-jungle-trek':    { title: 'Jungle Trek',    icon: '🖼', label: 'Jungle Trek',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg' },
-      'photo-jiu-jitsu':      { title: 'Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg' },
-      'photo-sporting-cristal': { title: 'Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg' }
+      'photo-bocas-del-toro': { title: 'Bocas del Toro', icon: '🖼', label: 'Bocas del Toro', width: 700, height: 520, photo: true, src: 'references/about-me/Bocas del Toro.JPG', caption: 'They see me floating, they hating...' },
+      'photo-morocco':        { title: 'Morocco',        icon: '🖼', label: 'Morocco',        width: 700, height: 520, photo: true, src: 'references/about-me/Morocco.JPG',           caption: 'Enjoying the view from a Moroccan fortress.' },
+      'photo-cusco':          { title: 'Machu Picchu',   icon: '🖼', label: 'Machu Picchu',   width: 700, height: 520, photo: true, src: 'references/about-me/Machu Picchu.jpeg',     caption: 'Couldn\'t leave Peru without visiting this magical place.' },
+      'photo-santa-marta':    { title: 'Valencia',       icon: '🖼', label: 'Valencia',       width: 700, height: 520, photo: true, src: 'references/about-me/Valencia.JPG',          caption: 'One of the reasons why I love this city.' },
+      'photo-costa-rica':     { title: 'Costa Rica',     icon: '🖼', label: 'Costa Rica',     width: 700, height: 520, photo: true, src: 'references/about-me/Costa Rica.jpeg',      caption: 'Biking through the coastline in Puerto Viejo.' },
+      'photo-jungle-trek':    { title: 'Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg',     caption: 'Had a fever, but still, the best trek of my life.' },
+      'photo-jiu-jitsu':      { title: 'Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg',       caption: 'Me and my longtime jiujitsu friends after receiving my purple belt.' },
+      'photo-sporting-cristal': { title: 'Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg', caption: 'First year working at the club and we won the league!' },
+      'case-study-user-interviews': {
+        title: '🔍 Uncovering perceived value via user interviews',
+        icon: '🔍', label: 'User Interviews',
+        width: 760, height: 520,
+        caseStudy: true
+      }
     };
 
     /* Focus a window (bring to front) */
@@ -108,20 +114,25 @@
         return;
       }
 
-      // Cascade position
-      var step = 30;
-      var posX = 80  + cascadeCount * step;
-      var posY = 60  + cascadeCount * step;
-      cascadeCount = (cascadeCount + 1) % 8;
-
-      // Clamp so window starts on-screen
-      posX = Math.min(posX, Math.max(0, window.innerWidth  - cfg.width  - 20));
+      // Center in viewport (taskbar is 30px at bottom)
+      var posX = Math.round((window.innerWidth  - cfg.width)         / 2);
+      var posY = Math.round((window.innerHeight - 30 - (cfg.height || 400)) / 2);
+      posX = Math.max(0, posX);
       posY = Math.max(0, posY);
 
-      // Pull content from <template> or build inline for photos
+      // Pull content from <template> or build inline for photos / case studies
       var bodyHTML;
       if (cfg.photo) {
-        bodyHTML = '<div class="photo-viewer-full"><img src="' + cfg.src + '" alt="' + cfg.label + '"></div>';
+        bodyHTML = '<div class="photo-viewer-full"><img src="' + cfg.src + '" alt="' + cfg.label + '"></div>' +
+                   '<div class="photo-caption">' + cfg.caption + '</div>';
+      } else if (cfg.caseStudy) {
+        bodyHTML =
+          '<div class="cs-slide-panel"></div>' +
+          '<div class="case-study-footer">' +
+            '<button class="btn cs-prev-btn" disabled>&#9664; Prev</button>' +
+            '<div class="cs-nav-center"><div class="cs-dots"></div><span class="cs-counter">1 / 7</span></div>' +
+            '<button class="btn cs-next-btn">Next &#9654;</button>' +
+          '</div>';
       } else {
         var tpl = document.getElementById('tpl-' + id);
         bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
@@ -129,7 +140,9 @@
 
       // Build window DOM
       var win = document.createElement('div');
-      win.className = cfg.photo ? 'win95-window spa-window photo-window' : 'win95-window spa-window';
+      win.className = cfg.photo      ? 'win95-window spa-window photo-window' :
+                      cfg.caseStudy  ? 'win95-window spa-window case-study-spa-window' :
+                                       'win95-window spa-window';
       win.id        = 'win-' + id;
       win.style.left  = posX + 'px';
       win.style.top   = posY + 'px';
@@ -161,6 +174,7 @@
 
       container.appendChild(win);
       windows[id] = { el: win, minimized: false, maximized: false, prevState: null };
+
 
       addTaskbarBtn(id, cfg);
       setupWindowEvents(id);
@@ -302,16 +316,66 @@
 
     /* ── Window content init ────────────────────────────── */
     function initWindowContent(id, win) {
-      if (id !== 'about') return;
-      var featured = win.querySelector('.about-featured-img');
-      var thumbs   = win.querySelectorAll('.about-thumb');
-      thumbs.forEach(function (thumb) {
-        thumb.addEventListener('click', function () {
-          featured.src = thumb.getAttribute('data-full');
-          thumbs.forEach(function (t) { t.classList.remove('active'); });
-          thumb.classList.add('active');
+      if (id === 'about') {
+        var featured = win.querySelector('.about-featured-img');
+        var thumbs   = win.querySelectorAll('.about-thumb');
+        thumbs.forEach(function (thumb) {
+          thumb.addEventListener('click', function () {
+            featured.src = thumb.getAttribute('data-full');
+            thumbs.forEach(function (t) { t.classList.remove('active'); });
+            thumb.classList.add('active');
+          });
         });
-      });
+      }
+
+      if (id === 'projects') {
+        var csBtn = win.querySelector('[data-case-study="user-interviews"]');
+        if (csBtn) {
+          csBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openCaseStudy();
+          });
+        }
+      }
+
+      if (id === 'case-study-user-interviews') {
+        var slidePanel = win.querySelector('.cs-slide-panel');
+        var dotsEl     = win.querySelector('.cs-dots');
+        var counterEl  = win.querySelector('.cs-counter');
+        var prevBtn    = win.querySelector('.cs-prev-btn');
+        var nextBtn    = win.querySelector('.cs-next-btn');
+        var current    = 0;
+
+        function renderSlide(i) {
+          current = i;
+          slidePanel.innerHTML = csSlides[i];
+          counterEl.textContent = (i + 1) + ' / ' + csSlides.length;
+          prevBtn.disabled = (i === 0);
+          nextBtn.disabled = (i === csSlides.length - 1);
+          dotsEl.querySelectorAll('.cs-dot').forEach(function (dot, idx) {
+            dot.classList.toggle('active', idx === i);
+          });
+        }
+
+        csSlides.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'cs-dot';
+          dot.title = 'Slide ' + (i + 1);
+          dot.addEventListener('click', function () { renderSlide(i); });
+          dotsEl.appendChild(dot);
+        });
+
+        prevBtn.addEventListener('click', function () { if (current > 0) renderSlide(current - 1); });
+        nextBtn.addEventListener('click', function () { if (current < csSlides.length - 1) renderSlide(current + 1); });
+
+        document.addEventListener('keydown', function (e) {
+          if (!windows['case-study-user-interviews'] || windows['case-study-user-interviews'].minimized) return;
+          if (e.key === 'ArrowLeft'  && current > 0)                   renderSlide(current - 1);
+          if (e.key === 'ArrowRight' && current < csSlides.length - 1) renderSlide(current + 1);
+        });
+
+        renderSlide(0);
+      }
     }
 
     /* ── Desktop icon drag & double-click ───────────────── */
@@ -376,7 +440,11 @@
 
       // Double-click → open window
       icon.addEventListener('dblclick', function () {
-        if (id) openWindow(id);
+        if (id === 'decor-recycle') {
+          showMessageBox('Recycle Bin', 'There is no trash in this portfolio.');
+        } else if (id) {
+          openWindow(id);
+        }
       });
 
       // Drag
@@ -473,6 +541,102 @@
       startMenu.style.display = 'none';
       resetIconPositions();
     });
+
+    /* ── Message Box ─────────────────────────────────────── */
+    var msgBox      = document.getElementById('msg-box');
+    var msgBoxTitle = document.getElementById('msg-box-title');
+    var msgBoxText  = document.getElementById('msg-box-text');
+
+    function showMessageBox(title, message) {
+      msgBoxTitle.textContent = title;
+      msgBoxText.textContent  = message;
+      msgBox.classList.remove('hidden');
+    }
+
+    function hideMsgBox() { msgBox.classList.add('hidden'); }
+
+    document.getElementById('msg-box-close').addEventListener('click', hideMsgBox);
+    document.getElementById('msg-box-ok').addEventListener('click', hideMsgBox);
+    document.addEventListener('keydown', function (e) {
+      if (!msgBox.classList.contains('hidden') && (e.key === 'Escape' || e.key === 'Enter')) hideMsgBox();
+    });
+
+    /* ── Case Study Slideshow ────────────────────────────── */
+    function openCaseStudy() { openWindow('case-study-user-interviews'); }
+
+    var csSlides = [
+      // Slide 1 — Intro (two-column layout)
+      '<h2 class="slide-title">Building the research foundation to understand Torre\'s users</h2>' +
+      '<div style="display:flex;gap:8px">' +
+        '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
+          '<div class="panel-sunken">' +
+            '<h3>Summary</h3>' +
+            '<p style="margin:0">Co-developed \'MOVERS\', Torre\'s first structured UX research guidelines, to fix inconsistent, hard-to-compare user interviews. Then used them in practice, gathering insights from 30 talent seekers that led to 31 new proposed experiments, 12 user personas, and 10 testimonials.</p>' +
+          '</div>' +
+          '<div class="panel-sunken">' +
+            '<h3>Role, tools &amp; stakeholders</h3>' +
+            '<p><strong>Role:</strong> UX Researcher</p>' +
+            '<p><strong>Collaborators:</strong> Design team, Operations, Sales, Account Managers</p>' +
+            '<p style="margin:0"><strong>Tools:</strong> Zoom, Notion, pen &amp; paper</p>' +
+          '</div>' +
+        '</div>' +
+        '<div style="flex:1;min-width:0;min-height:140px;background:#d4d0c8;border:2px dashed #7f9db9;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:Tahoma,Arial,sans-serif;font-size:11px;color:#888">' +
+          'Image' +
+        '</div>' +
+      '</div>',
+
+      // Slide 2 — Context & problem
+      '<h2 class="slide-title">Building the research foundation to understand Torre\'s users</h2>' +
+      '<div class="panel-sunken" style="padding:0;overflow:hidden">' +
+        '<div style="padding:8px 10px"><h3>Context &amp; problem</h3><p style="margin:0">At Torre, user interviews were central to product decisions, but the process was broken in three ways.</p></div>' +
+        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.1</h3><p style="margin:0">No structure: insights were hard to compare across interviews or over time.</p></div>' +
+        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.2</h3><p style="margin:0">Poor knowledge transfer: onboarding new team members meant starting from scratch.</p></div>' +
+        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.3</h3><p style="margin:0">Misaligned questions: interviews were tailored by user type, but not by funnel stage, missing critical nuance.</p></div>' +
+        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>The result</h3><p style="margin:0">Valuable insights were getting lost, and decision-making was suffering for it.</p></div>' +
+      '</div>',
+
+      // Slide 3 — Context & problem
+      '<h2 class="slide-title">Context &amp; problem</h2>' +
+      '<p>At Torre, user interviews were central to product decisions, but the process was broken in three ways:</p>' +
+      '<ol style="margin:8px 0 0 18px">' +
+      '<li style="margin-bottom:5px"><strong>No structure:</strong> insights were hard to compare across interviews or over time.</li>' +
+      '<li style="margin-bottom:5px"><strong>Poor knowledge transfer:</strong> onboarding new team members meant starting from scratch.</li>' +
+      '<li style="margin-bottom:5px"><strong>Misaligned questions:</strong> interviews were tailored by user type, but not by funnel stage — missing critical nuance.</li>' +
+      '</ol>' +
+      '<p style="margin-top:10px"><strong>Result:</strong> valuable insights were getting lost, and decision-making was suffering.</p>',
+
+      // Slide 4 — Solution overview
+      '<h2 class="slide-title">Solution overview</h2>' +
+      '<p>Before running interviews, we needed to fix the process itself. I collaborated with the Design team to develop <strong>MOVERS</strong> (Monthly Values and Exploratory Research Sessions), Torre\'s first standardized UX research guidelines. Only then did we put them to the test, running structured interviews with talent seekers across multiple segments.</p>',
+
+      // Slide 5 — Key steps & decisions
+      '<h2 class="slide-title">Key steps &amp; decisions</h2>' +
+      '<ol style="margin:0 0 0 18px">' +
+      '<li style="margin-bottom:5px"><strong>Research &amp; align:</strong> Studied The Mom Test, Inspired, NNG articles.</li>' +
+      '<li style="margin-bottom:5px"><strong>Build MOVERS:</strong> 4 phases — pre-interview setup, interview structure, value-finding experiments, post-interview docs.</li>' +
+      '<li style="margin-bottom:5px"><strong>Segment, then interview:</strong> Users segmented by service type and funnel stage.</li>' +
+      '<li style="margin-bottom:5px"><strong>Recruiting:</strong> No incentives to avoid bias — lots of cold outreach.</li>' +
+      '<li style="margin-bottom:5px"><strong>Report by segment:</strong> Value perception, personas, testimonials, and product opportunities per segment.</li>' +
+      '</ol>',
+
+      // Slide 6 — Impact
+      '<h2 class="slide-title">Impact</h2>' +
+      '<div class="metric-cards">' +
+      '<div class="metric-card"><span class="metric-value">31</span><span class="metric-label">experiments added to the product roadmap</span></div>' +
+      '<div class="metric-card"><span class="metric-value">12</span><span class="metric-label">user personas created</span></div>' +
+      '<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">testimonials collected</span></div>' +
+      '<div class="metric-card"><span class="metric-label"><strong>MOVERS</strong> became part of onboarding for AMs &amp; Customer Service</span></div>' +
+      '</div>',
+
+      // Slide 7 — Learnings
+      '<h2 class="slide-title">Learnings</h2>' +
+      '<ol style="margin:0 0 0 18px">' +
+      '<li style="margin-bottom:5px">Fixing the process before running research paid off — findings were comparable and spread to other teams.</li>' +
+      '<li style="margin-bottom:5px">Recruiting without incentives is harder than it sounds — build the pipeline early and lean on referrals.</li>' +
+      '<li style="margin-bottom:5px">Focus on listening during interviews, notes can wait. Multi-tasking leads to missed insights.</li>' +
+      '</ol>'
+    ];
+
 
   });
 })();
