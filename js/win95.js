@@ -46,33 +46,39 @@
 
     var configs = {
       about: {
-        title: '👤 About Me — Portfolio',
+        title: '👤 About Me',
         icon: '👤', label: 'About Me',
         width: 680
       },
       projects: {
-        title: '💼 Projects — Portfolio',
-        icon: '💼', label: 'Projects',
+        title: '🏗️ Projects',
+        icon: '🏗️', label: 'Projects',
         width: 720
       },
       experience: {
-        title: '📋 Experience — Portfolio',
-        icon: '📋', label: 'Experience',
+        title: '💼 Experience',
+        icon: '💼', label: 'Experience',
         width: 680, height: 560
       },
       contact: {
-        title: '📧 Contact — Portfolio',
-        icon: '📧', label: 'Contact',
+        title: '✉️ Contact',
+        icon: '✉️', label: 'Contact',
         width: 480
       },
-      'photo-bocas-del-toro': { title: 'Bocas del Toro', icon: '🖼', label: 'Bocas del Toro', width: 700, height: 520, photo: true, src: 'references/about-me/Bocas del Toro.JPG', caption: 'They see me floating, they hating...' },
-      'photo-morocco':        { title: 'Morocco',        icon: '🖼', label: 'Morocco',        width: 700, height: 520, photo: true, src: 'references/about-me/Morocco.JPG',           caption: 'Enjoying the view from a Moroccan fortress.' },
-      'photo-cusco':          { title: 'Machu Picchu',   icon: '🖼', label: 'Machu Picchu',   width: 700, height: 520, photo: true, src: 'references/about-me/Machu Picchu.jpeg',     caption: 'Couldn\'t leave Peru without visiting this magical place.' },
-      'photo-santa-marta':    { title: 'Valencia',       icon: '🖼', label: 'Valencia',       width: 700, height: 520, photo: true, src: 'references/about-me/Valencia.JPG',          caption: 'One of the reasons why I love this city.' },
-      'photo-costa-rica':     { title: 'Costa Rica',     icon: '🖼', label: 'Costa Rica',     width: 700, height: 520, photo: true, src: 'references/about-me/Costa Rica.jpeg',      caption: 'Biking through the coastline in Puerto Viejo.' },
-      'photo-jungle-trek':    { title: 'Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg',     caption: 'Had a fever, but still, the best trek of my life.' },
-      'photo-jiu-jitsu':      { title: 'Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg',       caption: 'Me and my longtime jiujitsu friends after receiving my purple belt.' },
-      'photo-sporting-cristal': { title: 'Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg', caption: 'First year working at the club and we won the league!' },
+      'photo-bocas-del-toro': { title: '🖼️ Bocas del Toro', icon: '🖼', label: 'Bocas del Toro', width: 700, height: 520, photo: true, src: 'references/about-me/Bocas del Toro.JPG', caption: 'They see me floating, they hating...' },
+      'photo-morocco':        { title: '🖼️ Morocco',        icon: '🖼', label: 'Morocco',        width: 700, height: 520, photo: true, src: 'references/about-me/Morocco.JPG',           caption: 'Enjoying the view from a Moroccan fortress.' },
+      'photo-cusco':          { title: '🖼️ Machu Picchu',   icon: '🖼', label: 'Machu Picchu',   width: 700, height: 520, photo: true, src: 'references/about-me/Machu Picchu.jpeg',     caption: 'Couldn\'t leave Peru without visiting this magical place.' },
+      'photo-santa-marta':    { title: '🖼️ Valencia',       icon: '🖼', label: 'Valencia',       width: 700, height: 520, photo: true, src: 'references/about-me/Valencia.JPG',          caption: 'One of the reasons why I love this city.' },
+      'photo-costa-rica':     { title: '🖼️ Costa Rica',     icon: '🖼', label: 'Costa Rica',     width: 700, height: 520, photo: true, src: 'references/about-me/Costa Rica.jpeg',      caption: 'Biking through the coastline in Puerto Viejo.' },
+      'photo-jungle-trek':    { title: '🖼️ Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg',     caption: 'Had a fever, but still, the best trek of my life.' },
+      'photo-jiu-jitsu':      { title: '🖼️ Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg',       caption: 'Me and my longtime jiujitsu friends after receiving my purple belt.' },
+      'photo-sporting-cristal': { title: '🖼️ Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg', caption: 'First year working at the club and we won the league!' },
+      'decor-calculator': {
+        title: '🧮 Calculator',
+        icon: '🧮', label: 'Calculator',
+        width: 224,
+        calculator: true
+      },
       'decor-paint': {
         title: 'Untitled - Paint',
         icon: '🎨', label: 'Paint',
@@ -87,7 +93,7 @@
         ]
       },
       'decor-notepad': {
-        title: 'Milestones.txt \u2014 Notepad',
+        title: '📝 Milestones.txt \u2014 Notepad',
         icon: '📝', label: 'Notepad',
         width: 580, height: 420,
         notepad: true,
@@ -159,6 +165,34 @@
           '</div>';
       } else if (cfg.notepad) {
         bodyHTML = '<textarea class="notepad-area" spellcheck="false">' + cfg.content + '</textarea>';
+      } else if (cfg.calculator) {
+        bodyHTML =
+          '<div class="calc-buttons">' +
+            '<div class="calc-display calc-span5"><input class="calc-screen" type="text" readonly value="0"></div>' +
+            '<button class="calc-btn calc-btn-action calc-span3" data-action="backspace">Backspace</button>' +
+            '<button class="calc-btn calc-btn-action" data-action="ce">CE</button>' +
+            '<button class="calc-btn calc-btn-action" data-action="c">C</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="7">7</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="8">8</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="9">9</button>' +
+            '<button class="calc-btn calc-btn-op" data-op="/">&divide;</button>' +
+            '<button class="calc-btn calc-btn-fn" data-action="sqrt">sqrt</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="4">4</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="5">5</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="6">6</button>' +
+            '<button class="calc-btn calc-btn-op" data-op="*">&times;</button>' +
+            '<button class="calc-btn calc-btn-fn" data-action="percent">%</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="1">1</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="2">2</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="3">3</button>' +
+            '<button class="calc-btn calc-btn-op" data-op="-">&minus;</button>' +
+            '<button class="calc-btn calc-btn-fn" data-action="reciprocal">1/x</button>' +
+            '<button class="calc-btn calc-btn-num" data-val="0">0</button>' +
+            '<button class="calc-btn calc-btn-fn" data-action="negate">+/-</button>' +
+            '<button class="calc-btn calc-btn-num" data-val=".">.</button>' +
+            '<button class="calc-btn calc-btn-op" data-op="+">+</button>' +
+            '<button class="calc-btn calc-btn-eq" data-action="eq">=</button>' +
+          '</div>';
       } else {
         var tpl = document.getElementById('tpl-' + id);
         bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
@@ -169,43 +203,40 @@
       win.className = cfg.photo || cfg.drawing ? 'win95-window spa-window photo-window' :
                       cfg.caseStudy            ? 'win95-window spa-window case-study-spa-window' :
                       cfg.notepad              ? 'win95-window spa-window notepad-window' :
+                      cfg.calculator           ? 'win95-window spa-window calculator-window' :
                                                  'win95-window spa-window';
       win.id        = 'win-' + id;
       win.style.left  = posX + 'px';
       win.style.top   = posY + 'px';
-      win.style.width = cfg.width + 'px';
+      if (cfg.width) win.style.width = cfg.width + 'px';
       if (cfg.height) win.style.height = cfg.height + 'px';
 
-      var winTitle = cfg.drawing ? drawing.name + ' - Paint' : cfg.title;
+      var winTitle = cfg.drawing ? '🎨 ' + drawing.name + ' - Paint' : cfg.title;
       var titleBarHTML =
         '<div class="title-bar spa-title-bar">' +
           '<span class="title-bar-text">' + winTitle + '</span>' +
           '<div class="title-bar-controls">' +
-            '<button class="title-bar-btn spa-btn-minimize" title="Minimize">_</button>' +
-            '<button class="title-bar-btn spa-btn-maximize" title="Maximize"></button>' +
-            '<button class="title-bar-btn spa-btn-close"    title="Close">✕</button>' +
+            '<button class="title-bar-btn spa-btn-minimize" title="Minimize"><img src="references/window-icons/Minimize.png" alt="Minimize"></button>' +
+            '<button class="title-bar-btn spa-btn-maximize" title="Maximize"><img src="references/window-icons/Maximize.png" alt="Maximize"></button>' +
+            '<button class="title-bar-btn spa-btn-close"    title="Close"><img src="references/window-icons/Close.png" alt="Close"></button>' +
           '</div>' +
         '</div>';
 
+      var menuBarHTML =
+        '<div class="menu-bar">' +
+          '<span class="menu-bar-item">Edit</span>' +
+          '<span class="menu-bar-item">View</span>' +
+          '<span class="menu-bar-item">Help</span>' +
+        '</div>';
+
       if (cfg.photo || cfg.drawing) {
-        win.innerHTML = titleBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
+        win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
+      } else if (cfg.calculator) {
+        win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
       } else if (cfg.notepad) {
-        win.innerHTML = titleBarHTML +
-          '<div class="menu-bar">' +
-            '<span class="menu-bar-item">File</span>' +
-            '<span class="menu-bar-item">Edit</span>' +
-            '<span class="menu-bar-item">Format</span>' +
-            '<span class="menu-bar-item">View</span>' +
-            '<span class="menu-bar-item">Help</span>' +
-          '</div>' +
-          '<div class="window-body">' + bodyHTML + '</div>';
+        win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
       } else {
-        win.innerHTML = titleBarHTML +
-          '<div class="menu-bar">' +
-            '<span class="menu-bar-item">File</span>' +
-            '<span class="menu-bar-item">View</span>' +
-            '<span class="menu-bar-item">Help</span>' +
-          '</div>' +
+        win.innerHTML = titleBarHTML + menuBarHTML +
           '<div class="window-body">' + bodyHTML + '</div>' +
           '<div class="status-bar"><span class="status-bar-field">Last updated 08/03/2026</span></div>';
       }
@@ -414,6 +445,104 @@
 
         renderSlide(0);
       }
+
+      if (id === 'decor-calculator') {
+        var screen          = win.querySelector('.calc-screen');
+        var currentVal      = '0';
+        var prevVal         = null;
+        var operator        = null;
+        var waitingForNext  = false;
+
+        function updateDisplay(v) { screen.value = v; }
+
+        function calculate(a, b, op) {
+          var result;
+          if (op === '+') result = a + b;
+          if (op === '-') result = a - b;
+          if (op === '*') result = a * b;
+          if (op === '/') result = b !== 0 ? a / b : 'Error';
+          if (typeof result === 'number') {
+            result = parseFloat(result.toPrecision(12));
+          }
+          return String(result);
+        }
+
+        win.querySelectorAll('.calc-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var val    = btn.dataset.val;
+            var op     = btn.dataset.op;
+            var action = btn.dataset.action;
+
+            if (val !== undefined) {
+              if (val === '.' && currentVal.includes('.') && !waitingForNext) return;
+              if (waitingForNext) {
+                currentVal = val === '.' ? '0.' : val;
+                waitingForNext = false;
+              } else {
+                currentVal = currentVal === '0' && val !== '.' ? val : currentVal + val;
+              }
+              updateDisplay(currentVal);
+
+            } else if (op) {
+              if (operator && !waitingForNext) {
+                currentVal = calculate(parseFloat(prevVal), parseFloat(currentVal), operator);
+                if (currentVal === 'Error') { operator = null; prevVal = null; waitingForNext = false; updateDisplay('Error'); return; }
+                updateDisplay(currentVal);
+              }
+              prevVal = currentVal;
+              operator = op;
+              waitingForNext = true;
+
+            } else if (action === 'eq') {
+              if (operator && !waitingForNext) {
+                currentVal = calculate(parseFloat(prevVal), parseFloat(currentVal), operator);
+                operator = null;
+                prevVal  = null;
+                waitingForNext = false;
+                updateDisplay(currentVal);
+              }
+
+            } else if (action === 'sqrt') {
+              var n = parseFloat(currentVal);
+              currentVal = n < 0 ? 'Error' : String(parseFloat(Math.sqrt(n).toPrecision(12)));
+              waitingForNext = false;
+              updateDisplay(currentVal);
+
+            } else if (action === 'percent') {
+              var pct = prevVal !== null ? parseFloat(prevVal) * parseFloat(currentVal) / 100 : parseFloat(currentVal) / 100;
+              currentVal = String(parseFloat(pct.toPrecision(12)));
+              waitingForNext = false;
+              updateDisplay(currentVal);
+
+            } else if (action === 'reciprocal') {
+              var rv = parseFloat(currentVal);
+              currentVal = rv === 0 ? 'Error' : String(parseFloat((1 / rv).toPrecision(12)));
+              waitingForNext = false;
+              updateDisplay(currentVal);
+
+            } else if (action === 'negate') {
+              if (currentVal !== '0' && currentVal !== 'Error') {
+                currentVal = currentVal.charAt(0) === '-' ? currentVal.slice(1) : '-' + currentVal;
+                updateDisplay(currentVal);
+              }
+
+            } else if (action === 'c') {
+              currentVal = '0'; prevVal = null; operator = null; waitingForNext = false;
+              updateDisplay(currentVal);
+
+            } else if (action === 'ce') {
+              currentVal = '0';
+              updateDisplay(currentVal);
+
+            } else if (action === 'backspace') {
+              if (!waitingForNext && currentVal !== 'Error') {
+                currentVal = currentVal.length > 1 ? currentVal.slice(0, -1) : '0';
+                updateDisplay(currentVal);
+              }
+            }
+          });
+        });
+      }
     }
 
     /* ── Desktop icon drag & double-click ───────────────── */
@@ -426,11 +555,11 @@
       'decor-recycle':    { left: 16,  top: 16  },
       'decor-notepad':    { left: 16,  top: 104 },
       'decor-calculator': { left: 16,  top: 192 },
-      'decor-paint':      { left: 16,  top: 280 },
-      'decor-wmp':        { left: 16,  top: 368 },
-      'decor-msn':        { left: 16,  top: 456 },
-      'decor-nfs':        { left: 16,  top: 544 },
-      'decor-aoe':        { left: 16,  top: 632 },
+      'decor-wmp':        { left: 16,  top: 280 },
+      'decor-paint':      { left: 16,  top: 382 },
+      'decor-msn':        { left: 16,  top: 470 },
+      'decor-nfs':        { left: 16,  top: 558 },
+      'decor-aoe':        { left: 16,  top: 646 },
       // Column 2 — personal photo icons (x=104)
       'photo-bocas-del-toro':  { left: 104, top: 16  },
       'photo-morocco':         { left: 104, top: 104 },
@@ -552,9 +681,11 @@
       var colW      = 88;
 
       function assignCol(ids, col) {
-        var step = Math.min(88, Math.floor((availH - marginTop) / ids.length));
-        ids.forEach(function (id, i) {
-          savedIcons[id] = { left: 16 + col * colW, top: marginTop + i * step };
+        var top = marginTop;
+        ids.forEach(function (id) {
+          savedIcons[id] = { left: 16 + col * colW, top: top };
+          var el = document.querySelector('[data-window="' + id + '"]');
+          top += (el ? el.offsetHeight : 72) + 20;
         });
       }
 
