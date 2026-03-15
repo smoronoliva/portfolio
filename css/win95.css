@@ -892,6 +892,14 @@ a { color: var(--xp-highlight); }
   flex-shrink: 0;
 }
 
+.case-study-footer .btn {
+  height: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
 .cs-nav-center {
   display: flex;
   align-items: center;

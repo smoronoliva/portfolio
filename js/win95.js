@@ -100,7 +100,7 @@
         content: '20 Milestones for the Future - Autobiography Project\nDecember 2010\n\n1. Get married\n2. Visit Barcelona \u2705\n3. Attend the UEFA Champions League final\n4. Have my own restaurant\n5. Go to study cuisine at Paris\n6. Graduate as an administrator in the Universidad del Pacifico \u2705\n7. Have my own car \u2705\n8. Move out of the house of my mum to live by myself \u2705\n9. Go to Las Vegas\n10. Learn to play the drums\n11. Meet Ronaldinho\n12. Create my own song \u2705\n13. Be an actionist of Football Club Barcelona\n14. Paint my own graffiti\n15. Write my own book\n16. Have my own bar\n17. Get a tattoo \u2705\n18. Watch my brother play his first professional football match \u274c (doesn\'t play anymore)\n19. Have kids\n20. Own a Ford Mustang with racing stripes\n\nUpdated March 2026'
       },
       'case-study-user-interviews': {
-        title: '🔍 Uncovering perceived value via user interviews',
+        title: '🔍 Building the foundation to understand Torre\'s users',
         icon: '🔍', label: 'User Interviews',
         width: 760, height: 520,
         caseStudy: true
@@ -160,7 +160,7 @@
           '<div class="cs-slide-panel"></div>' +
           '<div class="case-study-footer">' +
             '<button class="btn cs-prev-btn" disabled>&#9664; Prev</button>' +
-            '<div class="cs-nav-center"><div class="cs-dots"></div><span class="cs-counter">1 / 7</span></div>' +
+            '<div class="cs-nav-center"><div class="cs-dots"></div><span class="cs-counter">1 / 5</span></div>' +
             '<button class="btn cs-next-btn">Next &#9654;</button>' +
           '</div>';
       } else if (cfg.notepad) {
@@ -403,6 +403,18 @@
           csBtn.addEventListener('click', function (e) {
             e.preventDefault();
             openCaseStudy();
+          });
+        }
+
+        var shareBtn = win.querySelector('#share-portfolio-btn');
+        if (shareBtn) {
+          shareBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(window.location.href).then(function () {
+              var orig = shareBtn.textContent;
+              shareBtn.textContent = 'URL copied to clipboard';
+              setTimeout(function () { shareBtn.textContent = orig; }, 3000);
+            });
           });
         }
       }
@@ -735,8 +747,8 @@
 
     var csSlides = [
       // Slide 1 — Intro (two-column layout)
-      '<h2 class="slide-title">Building the research foundation to understand Torre\'s users</h2>' +
-      '<div style="display:flex;gap:8px">' +
+      '<h2 class="slide-title">Executive Summary</h2>' +
+      '<div style="display:flex;gap:8px;align-items:stretch">' +
         '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
           '<div class="panel-sunken">' +
             '<h3>Summary</h3>' +
@@ -749,61 +761,66 @@
             '<p style="margin:0"><strong>Tools:</strong> Zoom, Notion, pen &amp; paper</p>' +
           '</div>' +
         '</div>' +
-        '<div style="flex:1;min-width:0;min-height:140px;background:#d4d0c8;border:2px dashed #7f9db9;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:Tahoma,Arial,sans-serif;font-size:11px;color:#888">' +
-          'Image' +
+        '<div style="flex:1;min-width:0;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+          '<img src="references/project1/Pic 1 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
         '</div>' +
       '</div>',
 
       // Slide 2 — Context & problem
-      '<h2 class="slide-title">Building the research foundation to understand Torre\'s users</h2>' +
-      '<div class="panel-sunken" style="padding:0;overflow:hidden">' +
-        '<div style="padding:8px 10px"><h3>Context &amp; problem</h3><p style="margin:0">At Torre, user interviews were central to product decisions, but the process was broken in three ways.</p></div>' +
-        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.1</h3><p style="margin:0">No structure: insights were hard to compare across interviews or over time.</p></div>' +
-        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.2</h3><p style="margin:0">Poor knowledge transfer: onboarding new team members meant starting from scratch.</p></div>' +
-        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>Issue No.3</h3><p style="margin:0">Misaligned questions: interviews were tailored by user type, but not by funnel stage, missing critical nuance.</p></div>' +
-        '<div style="border-top:1px solid #b5b0a0;padding:8px 10px"><h3>The result</h3><p style="margin:0">Valuable insights were getting lost, and decision-making was suffering for it.</p></div>' +
+      '<h2 class="slide-title">Context &amp; Problem</h2>' +
+      '<div class="panel-sunken">' +
+        '<p>At Torre, user interviews were central to product decisions, but <strong>the research process was broken</strong> in three ways:</p>' +
+        '<ol style="margin:0 0 8px 18px">' +
+          '<li style="margin-bottom:4px"><strong>No structure:</strong> insights were hard to compare across interviews or over time.</li>' +
+          '<li style="margin-bottom:4px"><strong>Poor knowledge transfer:</strong> onboarding new team members meant starting from scratch.</li>' +
+          '<li><strong>Misaligned questions:</strong> interviews were tailored by user type, but not by funnel stage — missing critical nuance.</li>' +
+        '</ol>' +
+        '<p style="margin:0">As a result, valuable insights were getting lost, and product decision-making was suffering.</p>' +
+      '</div>' +
+      '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+        '<img src="references/project1/Pic 3 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
       '</div>',
 
-      // Slide 3 — Context & problem
-      '<h2 class="slide-title">Context &amp; problem</h2>' +
-      '<p>At Torre, user interviews were central to product decisions, but the process was broken in three ways:</p>' +
-      '<ol style="margin:8px 0 0 18px">' +
-      '<li style="margin-bottom:5px"><strong>No structure:</strong> insights were hard to compare across interviews or over time.</li>' +
-      '<li style="margin-bottom:5px"><strong>Poor knowledge transfer:</strong> onboarding new team members meant starting from scratch.</li>' +
-      '<li style="margin-bottom:5px"><strong>Misaligned questions:</strong> interviews were tailored by user type, but not by funnel stage — missing critical nuance.</li>' +
-      '</ol>' +
-      '<p style="margin-top:10px"><strong>Result:</strong> valuable insights were getting lost, and decision-making was suffering.</p>',
+      // Slide 3 — Solution overview
+      '<h2 class="slide-title">Solution Overview</h2>' +
+      '<div class="panel-sunken">' +
+        '<p style="margin:0">Before running interviews, we needed to fix the process itself. I collaborated with the Design team to develop <strong>MOVERS</strong> (Monthly Values and Exploratory Research Sessions), Torre\'s first standardized UX research guidelines. Only then did we put them to the test, running structured interviews with talent seekers across multiple segments.</p>' +
+      '</div>' +
+      '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+        '<img src="references/project1/Pic 2 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
+      '</div>',
 
-      // Slide 4 — Solution overview
-      '<h2 class="slide-title">Solution overview</h2>' +
-      '<p>Before running interviews, we needed to fix the process itself. I collaborated with the Design team to develop <strong>MOVERS</strong> (Monthly Values and Exploratory Research Sessions), Torre\'s first standardized UX research guidelines. Only then did we put them to the test, running structured interviews with talent seekers across multiple segments.</p>',
-
-      // Slide 5 — Key steps & decisions
+      // Slide 4 — Key steps & decisions
       '<h2 class="slide-title">Key steps &amp; decisions</h2>' +
-      '<ol style="margin:0 0 0 18px">' +
-      '<li style="margin-bottom:5px"><strong>Research &amp; align:</strong> Studied The Mom Test, Inspired, NNG articles.</li>' +
-      '<li style="margin-bottom:5px"><strong>Build MOVERS:</strong> 4 phases — pre-interview setup, interview structure, value-finding experiments, post-interview docs.</li>' +
-      '<li style="margin-bottom:5px"><strong>Segment, then interview:</strong> Users segmented by service type and funnel stage.</li>' +
-      '<li style="margin-bottom:5px"><strong>Recruiting:</strong> No incentives to avoid bias — lots of cold outreach.</li>' +
-      '<li style="margin-bottom:5px"><strong>Report by segment:</strong> Value perception, personas, testimonials, and product opportunities per segment.</li>' +
-      '</ol>',
+      '<div class="panel-sunken">' +
+        '<ol style="margin:0 0 0 18px">' +
+          '<li style="margin-bottom:5px"><strong>Research &amp; align:</strong> Studied The Mom Test, Inspired, NNG articles.</li>' +
+          '<li style="margin-bottom:5px"><strong>Build MOVERS:</strong> 4 phases — pre-interview setup, interview structure, value-finding experiments, post-interview docs.</li>' +
+          '<li style="margin-bottom:5px"><strong>Segment, then interview:</strong> Users segmented by service type and funnel stage.</li>' +
+          '<li style="margin-bottom:5px"><strong>Recruiting:</strong> No incentives to avoid bias — lots of cold outreach.</li>' +
+          '<li style="margin-bottom:5px"><strong>Report by segment:</strong> Value perception, personas, testimonials, and product opportunities per segment.</li>' +
+        '</ol>' +
+      '</div>' +
+      '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+        '<img src="references/project1/Pic 4 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
+      '</div>',
 
-      // Slide 6 — Impact
-      '<h2 class="slide-title">Impact</h2>' +
+      // Slide 5 — Impact & Learnings
+      '<h2 class="slide-title">Impact &amp; Learnings</h2>' +
       '<div class="metric-cards">' +
       '<div class="metric-card"><span class="metric-value">31</span><span class="metric-label">experiments added to the product roadmap</span></div>' +
       '<div class="metric-card"><span class="metric-value">12</span><span class="metric-label">user personas created</span></div>' +
       '<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">testimonials collected</span></div>' +
       '<div class="metric-card"><span class="metric-label"><strong>MOVERS</strong> became part of onboarding for AMs &amp; Customer Service</span></div>' +
-      '</div>',
-
-      // Slide 7 — Learnings
-      '<h2 class="slide-title">Learnings</h2>' +
-      '<ol style="margin:0 0 0 18px">' +
-      '<li style="margin-bottom:5px">Fixing the process before running research paid off — findings were comparable and spread to other teams.</li>' +
-      '<li style="margin-bottom:5px">Recruiting without incentives is harder than it sounds — build the pipeline early and lean on referrals.</li>' +
-      '<li style="margin-bottom:5px">Focus on listening during interviews, notes can wait. Multi-tasking leads to missed insights.</li>' +
-      '</ol>'
+      '</div>' +
+      '<div class="panel-sunken" style="margin-top:8px">' +
+        '<h3>Learnings</h3>' +
+        '<ol style="margin:0 0 0 18px">' +
+          '<li style="margin-bottom:5px">Fixing the process before running research paid off — findings were comparable and spread to other teams.</li>' +
+          '<li style="margin-bottom:5px">Recruiting without incentives is harder than it sounds — build the pipeline early and lean on referrals.</li>' +
+          '<li style="margin-bottom:5px">Focus on listening during interviews, notes can wait. Multi-tasking leads to missed insights.</li>' +
+        '</ol>' +
+      '</div>'
     ];
 
 
