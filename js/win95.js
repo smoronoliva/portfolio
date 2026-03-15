@@ -73,6 +73,26 @@
       'photo-jungle-trek':    { title: 'Santa Marta',    icon: '🖼', label: 'Santa Marta',    width: 700, height: 520, photo: true, src: 'references/about-me/Jungle trek.jpeg',     caption: 'Had a fever, but still, the best trek of my life.' },
       'photo-jiu-jitsu':      { title: 'Jiu Jitsu',      icon: '🖼', label: 'Jiu Jitsu',      width: 700, height: 520, photo: true, src: 'references/about-me/Jiu Jitsu.jpeg',       caption: 'Me and my longtime jiujitsu friends after receiving my purple belt.' },
       'photo-sporting-cristal': { title: 'Sporting Cristal', icon: '🖼', label: 'Sporting Cristal', width: 700, height: 520, photo: true, src: 'references/about-me/Sporting Cristal.jpeg', caption: 'First year working at the club and we won the league!' },
+      'decor-paint': {
+        title: 'Untitled - Paint',
+        icon: '🎨', label: 'Paint',
+        width: 600, height: 500,
+        drawing: true,
+        images: [
+          { src: 'references/drawings/Angry Goober.png',   name: 'Angry Goober',   caption: 'Sometimes I draw random stuff.' },
+          { src: 'references/drawings/Doodle Goku.png',    name: 'Doodle Goku',    caption: 'Sometimes I draw random stuff.' },
+          { src: 'references/drawings/MF Doomed.png',      name: 'MF Doomed',      caption: 'Sometimes I draw random stuff.' },
+          { src: 'references/drawings/Notorious K.I.D..png', name: 'Notorious K.I.D.', caption: 'Sometimes I draw random stuff.' },
+          { src: 'references/drawings/Pixel Doom.png',     name: 'Pixel Doom',     caption: 'Sometimes I draw random stuff.' }
+        ]
+      },
+      'decor-notepad': {
+        title: 'Milestones.txt \u2014 Notepad',
+        icon: '📝', label: 'Notepad',
+        width: 580, height: 420,
+        notepad: true,
+        content: '20 Milestones for the Future - Autobiography Project\nDecember 2010\n\n1. Get married\n2. Visit Barcelona \u2705\n3. Attend the UEFA Champions League final\n4. Have my own restaurant\n5. Go to study cuisine at Paris\n6. Graduate as an administrator in the Universidad del Pacifico \u2705\n7. Have my own car \u2705\n8. Move out of the house of my mum to live by myself \u2705\n9. Go to Las Vegas\n10. Learn to play the drums\n11. Meet Ronaldinho\n12. Create my own song \u2705\n13. Be an actionist of Football Club Barcelona\n14. Paint my own graffiti\n15. Write my own book\n16. Have my own bar\n17. Get a tattoo \u2705\n18. Watch my brother play his first professional football match \u274c (doesn\'t play anymore)\n19. Have kids\n20. Own a Ford Mustang with racing stripes\n\nUpdated March 2026'
+      },
       'case-study-user-interviews': {
         title: '🔍 Uncovering perceived value via user interviews',
         icon: '🔍', label: 'User Interviews',
@@ -125,6 +145,10 @@
       if (cfg.photo) {
         bodyHTML = '<div class="photo-viewer-full"><img src="' + cfg.src + '" alt="' + cfg.label + '"></div>' +
                    '<div class="photo-caption">' + cfg.caption + '</div>';
+      } else if (cfg.drawing) {
+        var drawing = cfg.images[Math.floor(Math.random() * cfg.images.length)];
+        bodyHTML = '<div class="photo-viewer-full"><img src="' + drawing.src + '" alt="' + drawing.name + '"></div>' +
+                   '<div class="photo-caption">' + drawing.caption + '</div>';
       } else if (cfg.caseStudy) {
         bodyHTML =
           '<div class="cs-slide-panel"></div>' +
@@ -133,6 +157,8 @@
             '<div class="cs-nav-center"><div class="cs-dots"></div><span class="cs-counter">1 / 7</span></div>' +
             '<button class="btn cs-next-btn">Next &#9654;</button>' +
           '</div>';
+      } else if (cfg.notepad) {
+        bodyHTML = '<textarea class="notepad-area" spellcheck="false">' + cfg.content + '</textarea>';
       } else {
         var tpl = document.getElementById('tpl-' + id);
         bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
@@ -140,18 +166,20 @@
 
       // Build window DOM
       var win = document.createElement('div');
-      win.className = cfg.photo      ? 'win95-window spa-window photo-window' :
-                      cfg.caseStudy  ? 'win95-window spa-window case-study-spa-window' :
-                                       'win95-window spa-window';
+      win.className = cfg.photo || cfg.drawing ? 'win95-window spa-window photo-window' :
+                      cfg.caseStudy            ? 'win95-window spa-window case-study-spa-window' :
+                      cfg.notepad              ? 'win95-window spa-window notepad-window' :
+                                                 'win95-window spa-window';
       win.id        = 'win-' + id;
       win.style.left  = posX + 'px';
       win.style.top   = posY + 'px';
       win.style.width = cfg.width + 'px';
       if (cfg.height) win.style.height = cfg.height + 'px';
 
+      var winTitle = cfg.drawing ? drawing.name + ' - Paint' : cfg.title;
       var titleBarHTML =
         '<div class="title-bar spa-title-bar">' +
-          '<span class="title-bar-text">' + cfg.title + '</span>' +
+          '<span class="title-bar-text">' + winTitle + '</span>' +
           '<div class="title-bar-controls">' +
             '<button class="title-bar-btn spa-btn-minimize" title="Minimize">_</button>' +
             '<button class="title-bar-btn spa-btn-maximize" title="Maximize"></button>' +
@@ -159,8 +187,18 @@
           '</div>' +
         '</div>';
 
-      if (cfg.photo) {
+      if (cfg.photo || cfg.drawing) {
         win.innerHTML = titleBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
+      } else if (cfg.notepad) {
+        win.innerHTML = titleBarHTML +
+          '<div class="menu-bar">' +
+            '<span class="menu-bar-item">File</span>' +
+            '<span class="menu-bar-item">Edit</span>' +
+            '<span class="menu-bar-item">Format</span>' +
+            '<span class="menu-bar-item">View</span>' +
+            '<span class="menu-bar-item">Help</span>' +
+          '</div>' +
+          '<div class="window-body">' + bodyHTML + '</div>';
       } else {
         win.innerHTML = titleBarHTML +
           '<div class="menu-bar">' +
