@@ -77,7 +77,8 @@
         title: '🧮 Calculator',
         icon: '🧮', label: 'Calculator',
         width: 224,
-        calculator: true
+        calculator: true,
+        noMaximize: true
       },
       'decor-paint': {
         title: 'Untitled - Paint',
@@ -102,6 +103,18 @@
       'case-study-user-interviews': {
         title: '🔍 Building the foundation to understand Torre\'s users',
         icon: '🔍', label: 'User Interviews',
+        width: 760, height: 520,
+        caseStudy: true
+      },
+      'decor-wmp': {
+        title: '▶️ Windows Media Player',
+        icon: '▶️', label: 'Media Player',
+        width: 600, height: 480,
+        mediaPlayer: true
+      },
+      'case-study-onboarding': {
+        title: '🚀 New onboarding to increase retention',
+        icon: '🚀', label: 'Onboarding',
         width: 760, height: 520,
         caseStudy: true
       }
@@ -193,6 +206,35 @@
             '<button class="calc-btn calc-btn-op" data-op="+">+</button>' +
             '<button class="calc-btn calc-btn-eq" data-action="eq">=</button>' +
           '</div>';
+      } else if (cfg.mediaPlayer) {
+        bodyHTML =
+          '<div class="wmp-body">' +
+            '<div class="wmp-left">' +
+              '<div class="wmp-canvas-wrap"><canvas class="wmp-canvas"></canvas></div>' +
+              '<div class="wmp-now-playing">' +
+                '<div class="wmp-now-title">Ready</div>' +
+                '<div class="wmp-now-artist"></div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="wmp-playlist-panel">' +
+              '<div class="wmp-playlist"></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="wmp-controls">' +
+            '<div class="wmp-btns">' +
+              '<button class="wmp-btn wmp-btn-prev" title="Previous"><span class="material-icons">skip_previous</span></button>' +
+              '<button class="wmp-btn wmp-btn-play" title="Play / Pause"><span class="material-icons wmp-play-icon">play_arrow</span></button>' +
+              '<button class="wmp-btn wmp-btn-next" title="Next"><span class="material-icons">skip_next</span></button>' +
+              '<button class="wmp-btn wmp-btn-vol" title="Unmute"><span class="material-icons">volume_off</span><span class="wmp-vol-label">Sound Off</span></button>' +
+            '</div>' +
+            '<div class="wmp-right">' +
+              '<select class="wmp-viz-select">' +
+                '<option value="bars">Equalizer bars</option>' +
+                '<option value="blobs">Bouncing blobs</option>' +
+                '<option value="wave">Waveform line</option>' +
+              '</select>' +
+            '</div>' +
+          '</div>';
       } else {
         var tpl = document.getElementById('tpl-' + id);
         bodyHTML = tpl ? tpl.innerHTML : '<p>Content not found.</p>';
@@ -204,6 +246,7 @@
                       cfg.caseStudy            ? 'win95-window spa-window case-study-spa-window' :
                       cfg.notepad              ? 'win95-window spa-window notepad-window' :
                       cfg.calculator           ? 'win95-window spa-window calculator-window' :
+                      cfg.mediaPlayer          ? 'win95-window spa-window media-player-window' :
                                                  'win95-window spa-window';
       win.id        = 'win-' + id;
       win.style.left  = posX + 'px';
@@ -233,12 +276,12 @@
         win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
       } else if (cfg.calculator) {
         win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
-      } else if (cfg.notepad) {
+      } else if (cfg.notepad || cfg.mediaPlayer) {
         win.innerHTML = titleBarHTML + menuBarHTML + '<div class="window-body">' + bodyHTML + '</div>';
       } else {
         win.innerHTML = titleBarHTML + menuBarHTML +
           '<div class="window-body">' + bodyHTML + '</div>' +
-          '<div class="status-bar"><span class="status-bar-field">Last updated 08/03/2026</span></div>';
+          '<div class="status-bar"><span class="status-bar-field">Last updated 19/03/2026</span></div>';
       }
 
       container.appendChild(win);
@@ -247,6 +290,10 @@
 
       addTaskbarBtn(id, cfg);
       setupWindowEvents(id);
+      if (cfg.noMaximize) {
+        var maxBtn = win.querySelector('.spa-btn-maximize');
+        if (maxBtn) maxBtn.disabled = true;
+      }
       initWindowContent(id, win);
       focusWindow(id);
     }
@@ -355,6 +402,7 @@
       // Double-click title bar → maximize / restore
       titleBar.addEventListener('dblclick', function (e) {
         if (e.target.tagName === 'BUTTON') return;
+        if (configs[id] && configs[id].noMaximize) return;
         maximizeWindow(id);
       });
     }
@@ -406,6 +454,14 @@
           });
         }
 
+        var onboardingBtn = win.querySelector('[data-case-study="onboarding"]');
+        if (onboardingBtn) {
+          onboardingBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openWindow('case-study-onboarding');
+          });
+        }
+
         var shareBtn = win.querySelector('#share-portfolio-btn');
         if (shareBtn) {
           shareBtn.addEventListener('click', function (e) {
@@ -417,6 +473,45 @@
             });
           });
         }
+      }
+
+      if (id === 'case-study-onboarding') {
+        var slidePanel = win.querySelector('.cs-slide-panel');
+        var dotsEl     = win.querySelector('.cs-dots');
+        var counterEl  = win.querySelector('.cs-counter');
+        var prevBtn    = win.querySelector('.cs-prev-btn');
+        var nextBtn    = win.querySelector('.cs-next-btn');
+        var current    = 0;
+
+        function renderSlide(i) {
+          current = i;
+          slidePanel.innerHTML = onboardingSlides[i];
+          counterEl.textContent = (i + 1) + ' / ' + onboardingSlides.length;
+          prevBtn.disabled = (i === 0);
+          nextBtn.disabled = (i === onboardingSlides.length - 1);
+          dotsEl.querySelectorAll('.cs-dot').forEach(function (dot, idx) {
+            dot.classList.toggle('active', idx === i);
+          });
+        }
+
+        onboardingSlides.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'cs-dot';
+          dot.title = 'Slide ' + (i + 1);
+          dot.addEventListener('click', function () { renderSlide(i); });
+          dotsEl.appendChild(dot);
+        });
+
+        prevBtn.addEventListener('click', function () { if (current > 0) renderSlide(current - 1); });
+        nextBtn.addEventListener('click', function () { if (current < onboardingSlides.length - 1) renderSlide(current + 1); });
+
+        document.addEventListener('keydown', function (e) {
+          if (!windows['case-study-onboarding'] || windows['case-study-onboarding'].minimized) return;
+          if (e.key === 'ArrowLeft'  && current > 0)                        renderSlide(current - 1);
+          if (e.key === 'ArrowRight' && current < onboardingSlides.length - 1) renderSlide(current + 1);
+        });
+
+        renderSlide(0);
       }
 
       if (id === 'case-study-user-interviews') {
@@ -456,6 +551,269 @@
         });
 
         renderSlide(0);
+      }
+
+      if (id === 'decor-wmp') {
+        var canvas      = win.querySelector('.wmp-canvas');
+        var playBtn     = win.querySelector('.wmp-btn-play');
+        var prevBtn     = win.querySelector('.wmp-btn-prev');
+        var nextBtn     = win.querySelector('.wmp-btn-next');
+        var volBtn      = win.querySelector('.wmp-btn-vol');
+        var nowTitle    = win.querySelector('.wmp-now-title');
+        var nowArtist   = win.querySelector('.wmp-now-artist');
+        var vizSel      = win.querySelector('.wmp-viz-select');
+        var ctx         = canvas.getContext('2d');
+        var playing     = false;
+        var raf         = null;
+        var vizMode     = 'bars';
+        var t           = 0;
+        var playIcon;
+
+        var volMuted = true;
+        var playlistEl = win.querySelector('.wmp-playlist');
+        var audio = new Audio();
+        audio.preload = 'none';
+        audio.muted = true;
+        var currentTrack = 0;
+
+        var playlist = [
+          'Chiddy Bang - Opposite of Adults.mp3.mp3',
+          'Fall Out Boy - Sugar, Were Goin Down [Album Version].mp3',
+          'Flashing Lights - Kanye West.mp3',
+          'Forever - Drake, Lil Wayne, Kanye West, Eminem.mp3',
+          'LMFAO - Yes.mp3.mp3',
+          "Lil' Wayne - A Milli.mp3",
+          'Mac Miller - Kool Aid and Frozen Pizza.mp3',
+          'Not Now - blink-182.mp3',
+          'Numb : Encore (Official Audio) - Linkin Park & JAY-Z.mp3',
+          'Panic At The Disco - I Write Sins Not Tragedies (Remastered).mp3',
+          'R. Kelly Ft. Wisin  Yandel - Burn It Up (HQ Audio).mp3',
+          'Snoop Dogg Ft. Pharrell - Drop It Like Its Hot (Radio Edit).mp3',
+          'Verme - Baby Ranks ft. Notch.mp3',
+          'Zion - Zundada [The Perfect Melody].mp3'
+        ];
+
+        function trackName(f) {
+          return f.replace(/\.mp3$/i, '').replace(/\.mp3$/i, '');
+        }
+
+        function loadTrack(i) {
+          currentTrack = i;
+          var name = trackName(playlist[i]);
+          nowTitle.textContent  = name;
+          nowArtist.textContent = '';
+          var items = playlistEl.querySelectorAll('.wmp-playlist-item');
+          items.forEach(function (el, idx) { el.classList.toggle('active', idx === i); });
+          if (items[i]) items[i].scrollIntoView({ block: 'nearest' });
+        }
+
+        function startPlay() {
+          if (!playIcon) playIcon = win.querySelector('.wmp-play-icon');
+          audio.src = 'musica-porta/' + encodeURIComponent(playlist[currentTrack]);
+          if (volMuted) {
+            volMuted = false;
+            audio.muted = false;
+            volBtn.querySelector('.material-icons').textContent = 'volume_up';
+            volBtn.querySelector('.wmp-vol-label').textContent  = 'Sound On';
+            volBtn.title = 'Mute';
+          }
+          var p = audio.play();
+          if (p && p.catch) p.catch(function () { pausePlay(); });
+          playing = true;
+          playIcon.textContent = 'pause';
+          playBtn.title = 'Pause';
+          if (raf) { cancelAnimationFrame(raf); raf = null; }
+          syncCanvas(); tick();
+        }
+
+        function pausePlay() {
+          if (!playIcon) playIcon = win.querySelector('.wmp-play-icon');
+          audio.pause();
+          playing = false;
+          playIcon.textContent = 'play_arrow';
+          playBtn.title = 'Play';
+          if (raf) { cancelAnimationFrame(raf); raf = null; }
+        }
+
+        audio.addEventListener('ended', function () {
+          if (currentTrack < playlist.length - 1) {
+            loadTrack(currentTrack + 1);
+            startPlay();
+          } else {
+            pausePlay();
+          }
+        });
+
+        // --- Bar state ---
+        var BAR_N   = 40;
+        var heights = new Float32Array(BAR_N);
+        var targets = new Float32Array(BAR_N);
+
+        // --- Blob state ---
+        function makeBlobs(w, h) {
+          return Array.from({ length: 7 }, function (_, i) {
+            return {
+              x: Math.random() * w, y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 3, vy: (Math.random() - 0.5) * 3,
+              r: 25 + Math.random() * 35,
+              hue: (i / 7) * 360,
+              phase: Math.random() * Math.PI * 2
+            };
+          });
+        }
+        var blobs = [];
+
+        function syncCanvas() {
+          var wrap = win.querySelector('.wmp-canvas-wrap');
+          canvas.width  = wrap.offsetWidth  || 480;
+          canvas.height = wrap.offsetHeight || 240;
+          blobs = makeBlobs(canvas.width, canvas.height);
+        }
+        syncCanvas();
+
+        function clearCanvas() {
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        clearCanvas();
+
+        function drawBars() {
+          var w = canvas.width, h = canvas.height;
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, w, h);
+          var barW = w / BAR_N;
+          for (var i = 0; i < BAR_N; i++) {
+            if (Math.random() < 0.041) targets[i] = (0.15 + Math.random() * 0.85) * h;
+            heights[i] += (targets[i] - heights[i]) * 0.092;
+            targets[i] *= 0.96;
+            var bh = Math.max(2, heights[i]);
+            var grad = ctx.createLinearGradient(0, h, 0, h - bh);
+            grad.addColorStop(0,   '#00dd44');
+            grad.addColorStop(0.6, '#00aaff');
+            grad.addColorStop(1,   '#cc44ff');
+            ctx.fillStyle = grad;
+            ctx.fillRect(i * barW + 1, h - bh, barW - 2, bh);
+          }
+        }
+
+        function drawBlobs() {
+          var w = canvas.width, h = canvas.height;
+          ctx.fillStyle = 'rgba(0,0,0,0.18)';
+          ctx.fillRect(0, 0, w, h);
+          blobs.forEach(function (b) {
+            b.x += b.vx; b.y += b.vy;
+            if (b.x < 0 || b.x > w) b.vx *= -1;
+            if (b.y < 0 || b.y > h) b.vy *= -1;
+            var r = b.r * (0.8 + 0.2 * Math.sin(t * 0.04 + b.phase));
+            var grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
+            grad.addColorStop(0,   'hsla(' + b.hue + ',100%,70%,0.9)');
+            grad.addColorStop(0.5, 'hsla(' + b.hue + ',100%,50%,0.4)');
+            grad.addColorStop(1,   'hsla(' + b.hue + ',100%,30%,0)');
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+            b.hue = (b.hue + 0.3) % 360;
+          });
+        }
+
+        function drawWave() {
+          var w = canvas.width, h = canvas.height;
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, w, h);
+          // filled area under the wave
+          ctx.beginPath();
+          ctx.moveTo(0, h);
+          for (var x = 0; x <= w; x++) {
+            var y = h / 2
+              + Math.sin(x * 0.025 + t * 0.026)  * h * 0.22
+              + Math.sin(x * 0.06  - t * 0.016)  * h * 0.08
+              + Math.sin(x * 0.012 + t * 0.010)  * h * 0.12;
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(w, h);
+          ctx.closePath();
+          var fillGrad = ctx.createLinearGradient(0, h / 2 - h * 0.3, 0, h);
+          fillGrad.addColorStop(0, 'rgba(0,180,255,0.3)');
+          fillGrad.addColorStop(1, 'rgba(0,60,160,0.04)');
+          ctx.fillStyle = fillGrad;
+          ctx.fill();
+          // glowing line on top
+          ctx.beginPath();
+          ctx.strokeStyle = '#00eeff';
+          ctx.lineWidth = 2;
+          ctx.shadowColor = '#00eeff';
+          ctx.shadowBlur = 10;
+          for (var x = 0; x <= w; x++) {
+            var y = h / 2
+              + Math.sin(x * 0.025 + t * 0.026)  * h * 0.22
+              + Math.sin(x * 0.06  - t * 0.016)  * h * 0.08
+              + Math.sin(x * 0.012 + t * 0.010)  * h * 0.12;
+            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        }
+
+        function tick() {
+          if (!playing) return;
+          t++;
+          if      (vizMode === 'bars')  drawBars();
+          else if (vizMode === 'blobs') drawBlobs();
+          else if (vizMode === 'wave')  drawWave();
+          raf = requestAnimationFrame(tick);
+        }
+
+        playBtn.addEventListener('click', function () {
+          if (playing) pausePlay(); else startPlay();
+        });
+
+        prevBtn.addEventListener('click', function () {
+          loadTrack(currentTrack > 0 ? currentTrack - 1 : playlist.length - 1);
+          if (playing) startPlay();
+        });
+
+        nextBtn.addEventListener('click', function () {
+          loadTrack(currentTrack < playlist.length - 1 ? currentTrack + 1 : 0);
+          if (playing) startPlay();
+        });
+
+        volBtn.addEventListener('click', function () {
+          volMuted = !volMuted;
+          audio.muted = volMuted;
+          volBtn.querySelector('.material-icons').textContent = volMuted ? 'volume_off' : 'volume_up';
+          volBtn.querySelector('.wmp-vol-label').textContent  = volMuted ? 'Sound Off' : 'Sound On';
+          volBtn.title = volMuted ? 'Unmute' : 'Mute';
+        });
+
+        vizSel.addEventListener('change', function () {
+          vizMode = vizSel.value;
+          if (vizMode === 'blobs') blobs = makeBlobs(canvas.width, canvas.height);
+          if (!playing) clearCanvas();
+        });
+
+        // Build playlist UI
+        playlist.forEach(function (f, i) {
+          var item = document.createElement('div');
+          item.className = 'wmp-playlist-item';
+          item.textContent = (i + 1) + '.  ' + trackName(f);
+          item.addEventListener('click', function () {
+            loadTrack(i);
+            startPlay();
+          });
+          playlistEl.appendChild(item);
+        });
+
+        // Stop audio and animation when window is closed
+        win.querySelector('.spa-btn-close').addEventListener('click', function () {
+          audio.pause();
+          audio.src = '';
+          if (raf) { cancelAnimationFrame(raf); raf = null; }
+          playing = false;
+        }, true);
+
+        // Load first track but don't auto-play
+        loadTrack(0);
       }
 
       if (id === 'decor-calculator') {
@@ -744,6 +1102,84 @@
 
     /* ── Case Study Slideshow ────────────────────────────── */
     function openCaseStudy() { openWindow('case-study-user-interviews'); }
+
+    var imgPlaceholder = '<div style="overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);background:#d4d0c8;display:flex;align-items:center;justify-content:center;color:#808080;font-style:italic;min-height:120px">Image placeholder</div>';
+
+    var onboardingSlides = [
+      // Slide 1 — Intro
+      '<h2 class="slide-title">Executive Summary</h2>' +
+      '<div style="display:flex;gap:8px;align-items:stretch">' +
+        '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
+          '<div class="panel-sunken">' +
+            '<h3>Summary</h3>' +
+            '<p style="margin:0">Talent seekers were dropping off early because Torre\'s platform was complex and overwhelming. Designed a self-guided product tour covering Torre\'s three core flows, resulting in a 7% retention increase and 14% improvement in positive user feedback.</p>' +
+          '</div>' +
+          '<div class="panel-sunken">' +
+            '<h3>Role, tools &amp; stakeholders</h3>' +
+            '<p><strong>Role:</strong> Product Designer</p>' +
+            '<p><strong>Collaborators:</strong> Product Manager, Engineering, Operations, Data Analytics</p>' +
+            '<p style="margin:0"><strong>Tools:</strong> Figma, Maze, Metabase</p>' +
+          '</div>' +
+        '</div>' +
+        '<div style="flex:1;min-width:0;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);background:#d4d0c8;display:flex;align-items:center;justify-content:center;color:#808080;font-style:italic">Image placeholder</div>' +
+      '</div>',
+
+      // Slide 2 — Context & Problem
+      '<h2 class="slide-title">Context &amp; Problem</h2>' +
+      '<div class="panel-sunken">' +
+        '<p>At a weekly metrics review, two red flags came up regarding talent seeker engagement:</p>' +
+        '<ol style="margin:0 0 8px 18px">' +
+          '<li style="margin-bottom:4px"><strong>Activation time was too long:</strong> talent seekers weren\'t interacting with their job postings after publishing them.</li>' +
+          '<li><strong>Drop-off rate was too high:</strong> most talent seekers never posted a second job.</li>' +
+        '</ol>' +
+        '<p style="margin:0">Research confirmed the root cause: talent seekers found the platform complex, overwhelming, and struggled to see how its features could make their recruiting process more efficient.</p>' +
+      '</div>' +
+      '<div style="margin-top:8px">' + imgPlaceholder + '</div>',
+
+      // Slide 3 — Solution Overview
+      '<h2 class="slide-title">Solution Overview</h2>' +
+      '<div class="panel-sunken">' +
+        '<p>We needed something scalable and automated — no manual walkthroughs, no extra load on Operations. After reviewing how other complex platforms onboarded users, we aligned on a <strong>self-guided product tour</strong> covering the three most important flows:</p>' +
+        '<ol style="margin:0 0 0 18px">' +
+          '<li style="margin-bottom:4px">Posting a job</li>' +
+          '<li style="margin-bottom:4px">Reviewing a pipeline of candidates</li>' +
+          '<li>Reviewing a candidate profile</li>' +
+        '</ol>' +
+      '</div>' +
+      '<div style="margin-top:8px">' + imgPlaceholder + '</div>',
+
+      // Slide 4 — Key Steps & Decisions
+      '<h2 class="slide-title">Key Steps &amp; Decisions</h2>' +
+      '<div class="panel-sunken">' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:6px"><strong>Research:</strong> Gathered insights from talent seekers across funnel stages — most didn\'t understand how Torre\'s features could help them recruit. It was not a feature problem, it was a communication problem.</li>' +
+          '<li style="margin-bottom:6px"><strong>Choosing the format:</strong> Considered a knowledge base and a task completion list, but landed on a self-guided tour — progressive, faster to implement, trackable by step, and harder to ignore.</li>' +
+          '<li style="margin-bottom:6px"><strong>Third-party vs. in-house (and a U-turn):</strong> Planned to use Chameleon, but branding constraints and a surprise POC from an engineer led us to build in-house — faster, fully aligned with the design system, and cost-free. The pivot cost three days.<br><em>Learning: keep the whole squad in the loop. Good ideas can come from anywhere.</em></li>' +
+          '<li><strong>Skipping usability testing intentionally:</strong> Given the tight deadline and well-established UX patterns, a usability test wasn\'t necessary. Instead, ran a thorough QA process in a feature-flag environment to validate transitions, hotspot positioning, and tour behavior.</li>' +
+        '</ol>' +
+      '</div>',
+
+      // Slide 5 — Impact & Learnings
+      '<h2 class="slide-title">Impact &amp; Learnings</h2>' +
+      '<div class="metric-cards">' +
+        '<div class="metric-card"><span class="metric-value">+7%</span><span class="metric-label">talent seeker retention (users returning to post a second job)</span></div>' +
+        '<div class="metric-card"><span class="metric-value">+14%</span><span class="metric-label">positive experience feedback (NPS surveys)</span></div>' +
+        '<div class="metric-card"><span class="metric-value">37%</span><span class="metric-label">product tour completion rate — main area for improvement</span></div>' +
+        '<div class="metric-card"><span class="metric-label">Activation time remained too variable to attribute to this effort directly</span></div>' +
+      '</div>' +
+      '<div class="panel-sunken" style="margin-top:8px">' +
+        '<h3>Learnings</h3>' +
+        '<ol style="margin:0 0 0 18px">' +
+          '<li style="margin-bottom:5px">Keep all engineers in the squad engaged because good ideas can come from anywhere, and surprises mid-project are avoidable.</li>' +
+          '<li style="margin-bottom:5px">Sometimes \'genius design\' is a valid call under constraints, but it\'s the exception, not the rule.</li>' +
+          '<li>When a metric stays inconclusive, raise a flag. This builds credibility towards the experiment, rather than undermining it.</li>' +
+        '</ol>' +
+      '</div>' +
+      '<div class="panel-sunken" style="margin-top:8px">' +
+        '<h3>Update</h3>' +
+        '<p style="margin:0">⚠️ New version release estimated in Q3-2025 to improve completion rate and highlight new platform features.</p>' +
+      '</div>'
+    ];
 
     var csSlides = [
       // Slide 1 — Intro (two-column layout)
