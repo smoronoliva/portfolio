@@ -587,7 +587,7 @@
           'Not Now - blink-182.mp3',
           'Numb : Encore (Official Audio) - Linkin Park & JAY-Z.mp3',
           'Panic At The Disco - I Write Sins Not Tragedies (Remastered).mp3',
-          'R. Kelly Ft. Wisin  Yandel - Burn It Up (HQ Audio).mp3',
+          'R. Kelly Ft. Wisin Yandel - Burn It Up (HQ Audio).mp3',
           'Snoop Dogg Ft. Pharrell - Drop It Like Its Hot (Radio Edit).mp3',
           'Verme - Baby Ranks ft. Notch.mp3',
           'Zion - Zundada [The Perfect Melody].mp3'
