@@ -1187,14 +1187,18 @@
       '<div style="display:flex;gap:8px;align-items:stretch">' +
         '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
           '<div class="panel-sunken">' +
-            '<h3>Summary</h3>' +
-            '<p style="margin:0">Co-developed \'MOVERS\', Torre\'s first structured UX research guidelines, to fix inconsistent, hard-to-compare user interviews. Then used them in practice, gathering insights from 30 talent seekers that led to 31 new proposed experiments, 12 user personas, and 10 testimonials.</p>' +
+            '<h3>Overview</h3>' +
+            '<p>Torre lacked a structured approach to user research, leading to inconsistent, hard-to-compare interviews. To address this, I co-developed \'MOVERS\', Torre\'s first structured UX research guidelines, and applied them in practice.</p>' +
+            '<p style="margin:0">I gathered insights from 30 talent seekers, leading to 31 new product initiatives in our roadmap, 12 user personas created, and 10 testimonials approved for marketing use.</p>' +
           '</div>' +
           '<div class="panel-sunken">' +
             '<h3>Role, tools &amp; stakeholders</h3>' +
-            '<p><strong>Role:</strong> UX Researcher</p>' +
-            '<p><strong>Collaborators:</strong> Design team, Operations, Sales, Account Managers</p>' +
-            '<p style="margin:0"><strong>Tools:</strong> Zoom, Notion, pen &amp; paper</p>' +
+            '<ul style="margin:0 0 0 18px;padding:0">' +
+              '<li><strong>Company:</strong> Torre.ai</li>' +
+              '<li><strong>Role:</strong> UX Researcher</li>' +
+              '<li><strong>Tools:</strong> Zoom, Notion, pen &amp; paper</li>' +
+              '<li><strong>Stakeholders:</strong> Design team, Operations, Sales, Account Managers</li>' +
+            '</ul>' +
           '</div>' +
         '</div>' +
         '<div style="flex:1;min-width:0;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
@@ -1203,38 +1207,40 @@
       '</div>',
 
       // Slide 2 — Context & problem
-      '<h2 class="slide-title">Context &amp; Problem</h2>' +
+      '<h2 class="slide-title">Context &amp; problem</h2>' +
       '<div class="panel-sunken">' +
-        '<p>At Torre, user interviews were central to product decisions, but <strong>the research process was broken</strong> in three ways:</p>' +
-        '<ol style="margin:0 0 8px 18px">' +
-          '<li style="margin-bottom:4px"><strong>No structure:</strong> insights were hard to compare across interviews or over time.</li>' +
-          '<li style="margin-bottom:4px"><strong>Poor knowledge transfer:</strong> onboarding new team members meant starting from scratch.</li>' +
-          '<li><strong>Misaligned questions:</strong> interviews were tailored by user type, but not by funnel stage — missing critical nuance.</li>' +
+        '<p>At Torre, recurrent user interviews were central to product decisions, but <strong>the research process was broken</strong> in three ways:</p>' +
+        '<ol style="margin:0 0 8px 18px;line-height:1.5">' +
+          '<li style="margin-bottom:4px"><strong>Unstructured research:</strong> Insights were hard to compare across interviews or over time.</li>' +
+          '<li style="margin-bottom:4px"><strong>Poor knowledge transfer:</strong> Without a shared framework, onboarding new team members was slow and inconsistent.</li>' +
+          '<li><strong>Misaligned questions:</strong> Questions were segmented by user type but not adapted to each user\'s stage in the funnel, resulting in gaps in the insights collected.</li>' +
         '</ol>' +
-        '<p style="margin:0">As a result, valuable insights were getting lost, and product decision-making was suffering.</p>' +
+        '<p style="margin:0">As a result, valuable insights were getting lost, and product decision-making was suffering for it.</p>' +
       '</div>' +
       '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
         '<img src="references/project1/Pic 3 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
       '</div>',
 
       // Slide 3 — Solution overview
-      '<h2 class="slide-title">Solution Overview</h2>' +
+      '<h2 class="slide-title">Solution overview</h2>' +
       '<div class="panel-sunken">' +
-        '<p style="margin:0">Before running interviews, we needed to fix the process itself. I collaborated with the Design team to develop <strong>MOVERS</strong> (Monthly Values and Exploratory Research Sessions), Torre\'s first standardized UX research guidelines. Only then did we put them to the test, running structured interviews with talent seekers across multiple segments.</p>' +
+        '<p><strong>Before going into value test interviews again, we needed to fix the process itself.</strong></p>' +
+        '<p>Together with the Design team, we developed MOVERS <em>(Monthly Values and Exploratory Research Sessions)</em>, Torre\'s first standardized UX research guidelines, designed to run on a monthly basis.</p>' +
+        '<p style="margin:0">Only then did we put them to the test, running structured interviews with talent seekers and job seekers across multiple segments.</p>' +
       '</div>' +
       '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
         '<img src="references/project1/Pic 2 - Case 1.png" style="width:100%;height:100%;object-fit:cover;display:block">' +
       '</div>',
 
       // Slide 4 — Key steps & decisions
-      '<h2 class="slide-title">Key steps &amp; decisions</h2>' +
+      '<h2 class="slide-title">Key steps &amp; challenges</h2>' +
       '<div class="panel-sunken">' +
-        '<ol style="margin:0 0 0 18px">' +
-          '<li style="margin-bottom:5px"><strong>Research &amp; align:</strong> Studied The Mom Test, Inspired, NNG articles.</li>' +
-          '<li style="margin-bottom:5px"><strong>Build MOVERS:</strong> 4 phases — pre-interview setup, interview structure, value-finding experiments, post-interview docs.</li>' +
-          '<li style="margin-bottom:5px"><strong>Segment, then interview:</strong> Users segmented by service type and funnel stage.</li>' +
-          '<li style="margin-bottom:5px"><strong>Recruiting:</strong> No incentives to avoid bias — lots of cold outreach.</li>' +
-          '<li style="margin-bottom:5px"><strong>Report by segment:</strong> Value perception, personas, testimonials, and product opportunities per segment.</li>' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:5px"><strong>Research &amp; alignment:</strong> The team gathered value-testing best practices from books like The Mom Test and Inspired, NNG articles, and personal experience. Everyone contributed before aligning on what to include in our guidelines.</li>' +
+          '<li style="margin-bottom:5px"><strong>Build MOVERS:</strong> The guidelines covered five phases: recruitment, pre-interview setup, running the interview, debriefing, and post-interview documentation. Key decisions included defining four value dimensions (functional, social, monetary, psychological) and creating standardized templates for documenting findings.</li>' +
+          '<li style="margin-bottom:5px"><strong>Segment, then interview:</strong> Users were segmented by service type and funnel stage before outreach, ensuring that questions were tailored for insight collection.</li>' +
+          '<li style="margin-bottom:5px"><strong>Recruiting:</strong> This was the hardest part. No incentives were offered to avoid bias, which meant a lot of cold outreach and some users ghosting us the day of the interview.</li>' +
+          '<li style="margin-bottom:5px"><strong>Report by segment:</strong> Each user segment got a structured report including: value perception across the four dimensions, user personas, testimonials, and a prioritized list of product initiatives based on insights discovered.</li>' +
         '</ol>' +
       '</div>' +
       '<div style="margin-top:8px;min-height:120px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
@@ -1242,19 +1248,19 @@
       '</div>',
 
       // Slide 5 — Impact & Learnings
-      '<h2 class="slide-title">Impact &amp; Learnings</h2>' +
+      '<h2 class="slide-title">Impact &amp; learnings</h2>' +
       '<div class="metric-cards">' +
-      '<div class="metric-card"><span class="metric-value">31</span><span class="metric-label">experiments added to the product roadmap</span></div>' +
-      '<div class="metric-card"><span class="metric-value">12</span><span class="metric-label">user personas created</span></div>' +
-      '<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">testimonials collected</span></div>' +
-      '<div class="metric-card"><span class="metric-label"><strong>MOVERS</strong> became part of onboarding for AMs &amp; Customer Service</span></div>' +
+      '<div class="metric-card"><span class="metric-value">31</span><span class="metric-label">insights-driven initiatives added to the product roadmap</span></div>' +
+      '<div class="metric-card"><span class="metric-value">12</span><span class="metric-label">user personas created, enabling more accurate product and marketing decisions</span></div>' +
+      '<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">user testimonials collected for marketing use</span></div>' +
+      '<div class="metric-card"><span class="metric-label"><strong>MOVERS</strong> became a core resource for the Design team, and is now also used as user interview training for Account Managers and Customer Service agents.</span></div>' +
       '</div>' +
       '<div class="panel-sunken" style="margin-top:8px">' +
-        '<h3>Learnings</h3>' +
-        '<ol style="margin:0 0 0 18px">' +
-          '<li style="margin-bottom:5px">Fixing the process before running research paid off — findings were comparable and spread to other teams.</li>' +
-          '<li style="margin-bottom:5px">Recruiting without incentives is harder than it sounds — build the pipeline early and lean on referrals.</li>' +
-          '<li style="margin-bottom:5px">Focus on listening during interviews, notes can wait. Multi-tasking leads to missed insights.</li>' +
+        '<h3>What we learned:</h3>' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:5px"><strong>Fixing the process before running the research paid off.</strong> Findings were comparable and usable, and other teams learned from the guidelines created.</li>' +
+          '<li style="margin-bottom:5px"><strong>Recruiting without incentives is harder than it sounds.</strong> Building the pipeline early and leaning on referrals is the best way to constantly get interviews.</li>' +
+          '<li style="margin-bottom:5px"><strong>Listening during interviews is key, notes can wait.</strong> Multi-tasking can lead to missing opportunities to discover insights.</li>' +
         '</ol>' +
       '</div>'
     ];
