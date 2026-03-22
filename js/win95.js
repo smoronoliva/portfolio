@@ -1111,74 +1111,77 @@
       '<div style="display:flex;gap:8px;align-items:stretch">' +
         '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
           '<div class="panel-sunken">' +
-            '<h3>Summary</h3>' +
-            '<p style="margin:0">Talent seekers were dropping off early because Torre\'s platform was complex and overwhelming. Designed a self-guided product tour covering Torre\'s three core flows, resulting in a 7% retention increase and 14% improvement in positive user feedback.</p>' +
+            '<h3>Overview</h3>' +
+            '<p>Torre\'s platform was perceived as complex and overwhelming by new talent seekers, leading to a high dropout rate shortly after posting their first job.</p>' +
+            '<p style="margin:0">To tackle this, I led the design of a self-guided product onboarding covering Torre\'s three core flows; resulting in a 7% retention increase and 14% improvement in positive user feedback.</p>' +
           '</div>' +
           '<div class="panel-sunken">' +
             '<h3>Role, tools &amp; stakeholders</h3>' +
-            '<p><strong>Role:</strong> Product Designer</p>' +
-            '<p><strong>Collaborators:</strong> Product Manager, Engineering, Operations, Data Analytics</p>' +
-            '<p style="margin:0"><strong>Tools:</strong> Figma, Maze, Metabase</p>' +
+            '<ul style="margin:0 0 0 18px;padding:0">' +
+              '<li><strong>Company:</strong> Torre.ai</li>' +
+              '<li><strong>Role:</strong> Product Designer</li>' +
+              '<li><strong>Collaborators:</strong> Product Manager, Engineering, Operations, Data Analytics</li>' +
+              '<li><strong>Tools:</strong> Figma, Metabase, Chrome DevTools</li>' +
+            '</ul>' +
           '</div>' +
         '</div>' +
-        '<div style="flex:1;min-width:0;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);background:#d4d0c8;display:flex;align-items:center;justify-content:center;color:#808080;font-style:italic">Image placeholder</div>' +
+        '<div style="flex:1;min-width:0;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+          '<img src="references/project2/Pic 1 - Case 2.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block">' +
+        '</div>' +
       '</div>',
 
       // Slide 2 — Context & Problem
-      '<h2 class="slide-title">Context &amp; Problem</h2>' +
+      '<h2 class="slide-title">Context &amp; problem</h2>' +
       '<div class="panel-sunken">' +
-        '<p>At a weekly metrics review, two red flags came up regarding talent seeker engagement:</p>' +
-        '<ol style="margin:0 0 8px 18px">' +
-          '<li style="margin-bottom:4px"><strong>Activation time was too long:</strong> talent seekers weren\'t interacting with their job postings after publishing them.</li>' +
-          '<li><strong>Drop-off rate was too high:</strong> most talent seekers never posted a second job.</li>' +
+        '<p>At a weekly metrics review, two concerning patterns stood out regarding talent seeker engagement:</p>' +
+        '<ol style="margin:0 0 8px 18px;line-height:1.5">' +
+          '<li style="margin-bottom:4px"><strong>Activation time was too long.</strong> Many talent seekers weren\'t interacting with their job openings after posting them, meaning their openings weren\'t being distributed and candidates weren\'t being reviewed.</li>' +
+          '<li><strong>Drop-off rate was too high.</strong> Many talent seekers weren\'t returning to post a second job after their first.</li>' +
         '</ol>' +
-        '<p style="margin:0">Research confirmed the root cause: talent seekers found the platform complex, overwhelming, and struggled to see how its features could make their recruiting process more efficient.</p>' +
-      '</div>' +
-      '<div style="margin-top:8px">' + imgPlaceholder + '</div>',
+        '<p style="margin:0">Research confirmed the root cause. Talent seekers found the platform complex and overwhelming, and struggled to see how its features could make their recruiting process more efficient.</p>' +
+      '</div>',
 
       // Slide 3 — Solution Overview
-      '<h2 class="slide-title">Solution Overview</h2>' +
+      '<h2 class="slide-title">Solution overview</h2>' +
       '<div class="panel-sunken">' +
-        '<p>We needed something scalable and automated — no manual walkthroughs, no extra load on Operations. After reviewing how other complex platforms onboarded users, we aligned on a <strong>self-guided product tour</strong> covering the three most important flows:</p>' +
-        '<ol style="margin:0 0 0 18px">' +
-          '<li style="margin-bottom:4px">Posting a job</li>' +
-          '<li style="margin-bottom:4px">Reviewing a pipeline of candidates</li>' +
-          '<li>Reviewing a candidate profile</li>' +
-        '</ol>' +
+        '<p><strong>We needed to progressively guide users through Torre\'s platform.</strong> It had to be scalable and automated, no manual walkthroughs or extra workload on the Account Management team.</p>' +
+        '<p style="margin:0">After reviewing how other data-heavy platforms onboarded users, we aligned on a self-guided product tour covering the three most important flows for talent seekers: posting a job, reviewing a pipeline of candidates, and reviewing a candidate profile.</p>' +
       '</div>' +
-      '<div style="margin-top:8px">' + imgPlaceholder + '</div>',
+      '<div style="margin-top:8px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+        '<img src="references/project2/Pic 3 - Case 2.png?v=2" style="width:100%;display:block">' +
+      '</div>',
 
       // Slide 4 — Key Steps & Decisions
-      '<h2 class="slide-title">Key Steps &amp; Decisions</h2>' +
+      '<h2 class="slide-title">Key steps &amp; challenges</h2>' +
       '<div class="panel-sunken">' +
         '<ol style="margin:0 0 0 18px;line-height:1.5">' +
-          '<li style="margin-bottom:6px"><strong>Research:</strong> Gathered insights from talent seekers across funnel stages — most didn\'t understand how Torre\'s features could help them recruit. It was not a feature problem, it was a communication problem.</li>' +
-          '<li style="margin-bottom:6px"><strong>Choosing the format:</strong> Considered a knowledge base and a task completion list, but landed on a self-guided tour — progressive, faster to implement, trackable by step, and harder to ignore.</li>' +
-          '<li style="margin-bottom:6px"><strong>Third-party vs. in-house (and a U-turn):</strong> Planned to use Chameleon, but branding constraints and a surprise POC from an engineer led us to build in-house — faster, fully aligned with the design system, and cost-free. The pivot cost three days.<br><em>Learning: keep the whole squad in the loop. Good ideas can come from anywhere.</em></li>' +
-          '<li><strong>Skipping usability testing intentionally:</strong> Given the tight deadline and well-established UX patterns, a usability test wasn\'t necessary. Instead, ran a thorough QA process in a feature-flag environment to validate transitions, hotspot positioning, and tour behavior.</li>' +
+          '<li style="margin-bottom:6px"><strong>Research:</strong> The team gathered insights from talent seekers across funnel stages, revealing that most didn\'t understand how Torre\'s features could help them recruit more efficiently. It was not a feature problem, it was a communication problem.</li>' +
+          '<li style="margin-bottom:6px"><strong>Choosing the format:</strong> We considered implementing a knowledge base or a task completion list, but landed on a self-guided tour because it was progressive, faster to implement, easier to update, trackable by step, and harder to ignore than passive resources.</li>' +
+          '<li style="margin-bottom:6px"><strong>Third-party vs. in-house (and a U-turn):</strong> The plan was to use a third-party provider (Chameleon). But branding constraints and a surprise POC from one of our engineers made us reconsider. We switched to building in-house, which made the implementation faster, fully aligned with our design system, and cost-free. The pivot cost us three days.</li>' +
+          '<li><strong>Skipping usability testing intentionally:</strong> Given the tight deadline and the fact that the tour relied on well-established UX patterns, I argued a usability test wasn\'t necessary here. The PM and CEO agreed. Instead, I ran a thorough QA review in a feature-flag environment to validate transitions, hotspot positioning, and tour behavior across all flows.</li>' +
         '</ol>' +
+      '</div>' +
+      '<div style="margin-top:8px;overflow:hidden;border-radius:2px;border:1px solid #7f9db9;box-shadow:inset 0 1px 2px rgba(0,0,0,0.1)">' +
+        '<video src="references/project2/POC Video - Case 2.mp4" style="width:100%;display:block" controls controlsList="nodownload nofullscreen noremoteplayback"></video>' +
       '</div>',
 
       // Slide 5 — Impact & Learnings
-      '<h2 class="slide-title">Impact &amp; Learnings</h2>' +
+      '<h2 class="slide-title">Impact &amp; learnings</h2>' +
       '<div class="metric-cards">' +
-        '<div class="metric-card"><span class="metric-value">+7%</span><span class="metric-label">talent seeker retention (users returning to post a second job)</span></div>' +
-        '<div class="metric-card"><span class="metric-value">+14%</span><span class="metric-label">positive experience feedback (NPS surveys)</span></div>' +
-        '<div class="metric-card"><span class="metric-value">37%</span><span class="metric-label">product tour completion rate — main area for improvement</span></div>' +
-        '<div class="metric-card"><span class="metric-label">Activation time remained too variable to attribute to this effort directly</span></div>' +
+        '<div class="metric-card"><span class="metric-value">+7%</span><span class="metric-label">increase in talent seeker retention<br>(users returning to post a second job)</span></div>' +
+        '<div class="metric-card"><span class="metric-value">+14%</span><span class="metric-label">increase in positive talent seeker experience feedback<br>(NPS surveys)</span></div>' +
+        '<div class="metric-card"><span class="metric-value">37%</span><span class="metric-label">product tour completion rate<br>(kept as the main area for improvement)</span></div>' +
+        '<div class="metric-card"><span class="metric-label"><strong>No clear impact on the activation time</strong>, as it remained too variable to attribute to this effort directly</span></div>' +
       '</div>' +
       '<div class="panel-sunken" style="margin-top:8px">' +
-        '<h3>Learnings</h3>' +
-        '<ol style="margin:0 0 0 18px">' +
-          '<li style="margin-bottom:5px">Keep all engineers in the squad engaged because good ideas can come from anywhere, and surprises mid-project are avoidable.</li>' +
-          '<li style="margin-bottom:5px">Sometimes \'genius design\' is a valid call under constraints, but it\'s the exception, not the rule.</li>' +
-          '<li>When a metric stays inconclusive, raise a flag. This builds credibility towards the experiment, rather than undermining it.</li>' +
+        '<h3>What we learned:</h3>' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:5px"><strong>Keep the whole squad in the loop.</strong> The engineer who built the POC wasn\'t assigned to this initiative, but heard about it in an informal chat and came up with a solution.</li>' +
+          '<li style="margin-bottom:5px"><strong>Sometimes \'Genius design\' is a valid call under constraints.</strong> However it\'s the exception, not the rule.</li>' +
+          '<li><strong>When a metric stays inconclusive, raise a flag.</strong> It builds credibility rather than undermining it.</li>' +
         '</ol>' +
       '</div>' +
-      '<div class="panel-sunken" style="margin-top:8px">' +
-        '<h3>Update</h3>' +
-        '<p style="margin:0">⚠️ New version release estimated in Q3-2025 to improve completion rate and highlight new platform features.</p>' +
-      '</div>'
+''
     ];
 
     var csSlides = [

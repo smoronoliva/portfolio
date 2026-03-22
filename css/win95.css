@@ -1190,3 +1190,8 @@ a { color: var(--xp-highlight); }
   appearance: none;
   -webkit-appearance: none;
 }
+
+
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-fullscreen-button { display: none !important; }
