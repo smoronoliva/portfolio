@@ -117,6 +117,12 @@
         icon: '🚀', label: 'Onboarding',
         width: 760, height: 520,
         caseStudy: true
+      },
+      'case-study-analytics': {
+        title: '📊 A new analytics platform to increase engagement',
+        icon: '📊', label: 'Analytics Platform',
+        width: 760, height: 520,
+        caseStudy: true
       }
     };
 
@@ -281,7 +287,7 @@
       } else {
         win.innerHTML = titleBarHTML + menuBarHTML +
           '<div class="window-body">' + bodyHTML + '</div>' +
-          '<div class="status-bar"><span class="status-bar-field">Last updated 19/03/2026</span></div>';
+          '<div class="status-bar"><span class="status-bar-field">Last updated 27/03/2026</span></div>';
       }
 
       container.appendChild(win);
@@ -462,6 +468,14 @@
           });
         }
 
+        var analyticsBtn = win.querySelector('[data-case-study="analytics"]');
+        if (analyticsBtn) {
+          analyticsBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openWindow('case-study-analytics');
+          });
+        }
+
         var shareBtn = win.querySelector('#share-portfolio-btn');
         if (shareBtn) {
           shareBtn.addEventListener('click', function (e) {
@@ -548,6 +562,45 @@
           if (!windows['case-study-user-interviews'] || windows['case-study-user-interviews'].minimized) return;
           if (e.key === 'ArrowLeft'  && current > 0)                   renderSlide(current - 1);
           if (e.key === 'ArrowRight' && current < csSlides.length - 1) renderSlide(current + 1);
+        });
+
+        renderSlide(0);
+      }
+
+      if (id === 'case-study-analytics') {
+        var slidePanel = win.querySelector('.cs-slide-panel');
+        var dotsEl     = win.querySelector('.cs-dots');
+        var counterEl  = win.querySelector('.cs-counter');
+        var prevBtn    = win.querySelector('.cs-prev-btn');
+        var nextBtn    = win.querySelector('.cs-next-btn');
+        var current    = 0;
+
+        function renderSlide(i) {
+          current = i;
+          slidePanel.innerHTML = analyticsSlides[i];
+          counterEl.textContent = (i + 1) + ' / ' + analyticsSlides.length;
+          prevBtn.disabled = (i === 0);
+          nextBtn.disabled = (i === analyticsSlides.length - 1);
+          dotsEl.querySelectorAll('.cs-dot').forEach(function (dot, idx) {
+            dot.classList.toggle('active', idx === i);
+          });
+        }
+
+        analyticsSlides.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'cs-dot';
+          dot.title = 'Slide ' + (i + 1);
+          dot.addEventListener('click', function () { renderSlide(i); });
+          dotsEl.appendChild(dot);
+        });
+
+        prevBtn.addEventListener('click', function () { if (current > 0) renderSlide(current - 1); });
+        nextBtn.addEventListener('click', function () { if (current < analyticsSlides.length - 1) renderSlide(current + 1); });
+
+        document.addEventListener('keydown', function (e) {
+          if (!windows['case-study-analytics'] || windows['case-study-analytics'].minimized) return;
+          if (e.key === 'ArrowLeft'  && current > 0)                        renderSlide(current - 1);
+          if (e.key === 'ArrowRight' && current < analyticsSlides.length - 1) renderSlide(current + 1);
         });
 
         renderSlide(0);
@@ -1107,7 +1160,7 @@
 
     var onboardingSlides = [
       // Slide 1 — Intro
-      '<h2 class="slide-title">Executive Summary</h2>' +
+      '<h2 class="slide-title">Executive summary</h2>' +
       '<div style="display:flex;gap:8px;align-items:stretch">' +
         '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
           '<div class="panel-sunken">' +
@@ -1186,7 +1239,7 @@
 
     var csSlides = [
       // Slide 1 — Intro (two-column layout)
-      '<h2 class="slide-title">Executive Summary</h2>' +
+      '<h2 class="slide-title">Executive summary</h2>' +
       '<div style="display:flex;gap:8px;align-items:stretch">' +
         '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
           '<div class="panel-sunken">' +
@@ -1265,6 +1318,94 @@
           '<li style="margin-bottom:5px"><strong>Recruiting without incentives is harder than it sounds.</strong> Building the pipeline early and leaning on referrals is the best way to constantly get interviews.</li>' +
           '<li style="margin-bottom:5px"><strong>Listening during interviews is key, notes can wait.</strong> Multi-tasking can lead to missing opportunities to discover insights.</li>' +
         '</ol>' +
+      '</div>'
+    ];
+
+    var analyticsSlides = [
+      // Slide 1 — Executive summary
+      '<h2 class="slide-title">Executive summary</h2>' +
+      '<div style="display:flex;flex-direction:column;gap:8px">' +
+        '<div class="panel-sunken">' +
+          '<h3>Overview</h3>' +
+          '<p>Digistore24\'s analytics platform was perceived as complex and intimidating. Only ~30% of active users engaged with it weekly, and internal teams were spending significant time building dashboards manually on behalf of users.</p>' +
+          '<p>I led the end-to-end design to rebuild the analytics platform focused on one goal: make it feel safe, simple, and impossible to break. Our target is to increase weekly active usage from 30% to 35%, giving users a platform they can navigate and explore independently.</p>' +
+          '<p style="margin:0"><em>⚠️ This project is currently in the rollout phase. Pictures or videos are not available yet as the feature hasn\'t been publicly released.</em></p>' +
+        '</div>' +
+        '<div class="panel-sunken">' +
+          '<h3>Role, tools &amp; stakeholders</h3>' +
+          '<ul style="margin:0 0 0 18px;padding:0">' +
+            '<li><strong>Company:</strong> Digistore24</li>' +
+            '<li><strong>Role:</strong> Senior Product Designer</li>' +
+            '<li><strong>Stakeholders:</strong> Product trio, Customer Service, Account Management, Sales and Data teams</li>' +
+            '<li><strong>Tools:</strong> Lovable, Figma, PostHog</li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>',
+
+      // Slide 2 — Context & Problem
+      '<h2 class="slide-title">Context &amp; problem</h2>' +
+      '<div class="panel-sunken">' +
+        '<p><strong>Digistore24\'s analytics platform had a fundamental trust problem.</strong> Users were afraid to use it, afraid of breaking something, afraid they wouldn\'t find the KPIs they needed, and afraid that customizing it was risky rather than empowering.</p>' +
+        '<p><strong>This created two compounding problems:</strong></p>' +
+        '<ol style="margin:0 0 8px 18px;line-height:1.5">' +
+          '<li style="margin-bottom:4px"><strong>User pain:</strong> The platform was hard to navigate and overwhelming. Key metrics were difficult to discover, and users lacked the confidence to explore or customize their views.</li>' +
+          '<li><strong>Internal pain:</strong> User Success and Technical Consultants were regularly building dashboards for users and spending significant time on manual configuration and explanations. Not scalable.</li>' +
+        '</ol>' +
+        '<p style="margin:0">User research confirmed the root cause. Across interviews with vendors and affiliates, the consistent theme was the same: users wanted accurate information they could access quickly, not a powerful but overwhelming canvas. Several users were working around the platform entirely, manually exporting data into spreadsheets for their weekly analysis.</p>' +
+      '</div>',
+
+      // Slide 3 — Solution Overview
+      '<h2 class="slide-title">Solution overview</h2>' +
+      '<div class="panel-sunken">' +
+        '<p><strong>Before redesigning anything, we needed to understand what users actually needed.</strong> Semi-structured interviews combined with a usability test of a working prototype, built in Lovable, were conducted with vendors and affiliates across the US market, supplemented by past research from the German market.</p>' +
+        '<p><strong>The research gave us a clear direction: prioritize confidence, clarity, and sensible defaults over feature depth. Users didn\'t need more features. They needed to trust the ones already there.</strong></p>' +
+        '<p>We rebuilt Analytics from the ground up organized around five core capabilities:</p>' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:4px">KPI and metric definitions</li>' +
+          '<li style="margin-bottom:4px">A customizable analytics dashboard</li>' +
+          '<li style="margin-bottom:4px">Pre-built insight dashboards</li>' +
+          '<li style="margin-bottom:4px">Sales and conversion tracking</li>' +
+          '<li>Trend analysis and data exploration</li>' +
+        '</ol>' +
+      '</div>',
+
+      // Slide 4 — Key Steps & Challenges
+      '<h2 class="slide-title">Key steps &amp; challenges</h2>' +
+      '<div class="panel-sunken">' +
+        '<ol style="margin:0 0 0 18px;line-height:1.5">' +
+          '<li style="margin-bottom:6px"><strong>User research first:</strong> Before designing anything, we ran semi-structured interviews with 4 US-based vendors and affiliates, supplemented by past German market research. The key insight: this was not a feature problem, it was a trust and communication problem. Users wanted speed and accuracy, not complexity.</li>' +
+          '<li style="margin-bottom:6px"><strong>Defining the MVP scope:</strong> With a clear research foundation, we made a deliberate decision to prioritize usability over feature depth. Advanced functionality, including exports, additional KPIs and automation, was explicitly deferred to next iterations. Our MVP focuses entirely on making the existing experience feel safe and intuitive.</li>' +
+          '<li style="margin-bottom:6px"><strong>Designing for confidence, not just usability:</strong> Every design decision was filtered through one question: does this make the user feel more in control? This led to key choices like transparent KPI tooltips showing calculation logic, auto-saved customizations so users never fear losing work, and a clear undo mechanism for every dashboard change.</li>' +
+          '<li style="margin-bottom:6px"><strong>Prototype and validate:</strong> A working prototype was built in Lovable and used directly in interviews and in stakeholder alignment. This allowed us to test real interactions, with users and internally, and also to get more buy-in from stakeholders.</li>' +
+          '<li style="margin-bottom:6px"><strong>Balancing vendor and affiliate needs:</strong> Research revealed a meaningful divergence between vendor and affiliate use cases. Affiliates needed campaign-level performance views, vendors needed deeper product and affiliate drill-downs. The MVP addresses shared needs first, with divergent flows flagged for future iterations.</li>' +
+          '<li style="margin-bottom:6px"><strong>Documentation and hand-off:</strong> Due to the size of the project, it was broken down into epics for engineers to implement it progressively. It consists of eight epics, from basic KPIs displays to the MVPs onboarding, with shared components created exclusively for the new analytics platform.</li>' +
+          '<li><strong>Smooth release:</strong> Before the release we ran an extensive QA covering most common scenarios from our different types of users (new vendor, experienced vendor, affiliate, multi-account vendor). As well, to avoid impacting the current user experience negatively, we are doing a progressive gradual rollout with a control group, to be able to discover any issues and react quickly.</li>' +
+        '</ol>' +
+      '</div>',
+
+      // Slide 5 — Impact & Learnings
+      '<h2 class="slide-title">Impact &amp; learnings</h2>' +
+      '<div style="display:flex;flex-direction:column;gap:8px">' +
+        '<div class="panel-sunken">' +
+          '<h3>Impact</h3>' +
+          '<ul style="margin:0 0 0 18px;padding:0">' +
+            '<li style="margin-bottom:4px">Weekly Analytics engagement target: ~30% to 35% of active users.</li>' +
+            '<li style="margin-bottom:4px">Internal support operational burden expected to reduce as users can navigate and customize their dashboards independently.</li>' +
+            '<li>Analytics platform rebuilt around 5 core capabilities, covering 30+ KPIs across revenue, conversion, affiliates, and subscriptions.</li>' +
+          '</ul>' +
+        '</div>' +
+        '<div class="panel-sunken">' +
+          '<h3>What we learned</h3>' +
+          '<ol style="margin:0 0 0 18px;padding:0;line-height:1.5">' +
+            '<li style="margin-bottom:6px"><strong>Fear is a design problem.</strong> Users weren\'t disengaged because the data wasn\'t useful. They were disengaged because the experience felt risky.</li>' +
+            '<li style="margin-bottom:6px"><strong>Defaults matter more than flexibility.</strong> The most common complaint wasn\'t "I can\'t do what I want." It was "I don\'t know where to start." Intuitive defaults reduce the learning curve more than any new feature could.</li>' +
+            '<li><strong>AI-powered prototyping proved its value.</strong> Using a working Lovable prototype instead of static designs uncovered interaction issues that a Figma prototype wouldn\'t have caught, and built more credibility with stakeholders.</li>' +
+          '</ol>' +
+        '</div>' +
+        '<div class="panel-sunken">' +
+          '<h3>What\'s next</h3>' +
+          '<p style="margin:0">This MVP lays the foundation. Future versions will build on user confidence by adding more KPIs, export capabilities, and AI-led customization and automation.</p>' +
+        '</div>' +
       '</div>'
     ];
 
