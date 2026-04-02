@@ -1195,3 +1195,39 @@ a { color: var(--xp-highlight); }
 video::-webkit-media-controls-volume-slider,
 video::-webkit-media-controls-mute-button,
 video::-webkit-media-controls-fullscreen-button { display: none !important; }
+
+/* ── Mobile / tablet screen ─────────────────────────────── */
+#mobile-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--xp-desktop);
+  align-items: center;
+  justify-content: center;
+}
+
+#mobile-screen::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('../references/mj.webp') center / cover no-repeat;
+  z-index: 0;
+}
+
+#mobile-screen .win95-dialog {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px), (max-height: 600px) {
+  #mobile-screen {
+    display: flex;
+  }
+}
+
+@media (max-width: 450px) {
+  #mobile-screen .win95-dialog {
+    width: 80%;
+  }
+}

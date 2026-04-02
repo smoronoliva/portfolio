@@ -1410,5 +1410,23 @@
     ];
 
 
+    /* ── Mobile share button ────────────────────────────── */
+    var mobileShareBtn = document.getElementById('mobile-share-btn');
+    if (mobileShareBtn) {
+      mobileShareBtn.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Sebastián Moron — Portfolio',
+            url: window.location.href
+          });
+        } else {
+          navigator.clipboard.writeText(window.location.href).then(function () {
+            mobileShareBtn.textContent = 'Link copied!';
+            setTimeout(function () { mobileShareBtn.textContent = 'Share Portfolio'; }, 2000);
+          });
+        }
+      });
+    }
+
   });
 })();
